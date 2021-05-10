@@ -1,6 +1,6 @@
 {
-    "name": "app_public",
-    "short_name": "app_public",
+    "name": "frontend_app_public",
+    "short_name": "frontend_app_public",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

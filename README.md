@@ -1,4 +1,4 @@
-# app_public
+# frontend_app_public
 
 A new Flutter project.
 
