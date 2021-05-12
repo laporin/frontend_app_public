@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:frontend_app_public/model/category_model.dart';
 import 'package:frontend_app_public/model/report_status_enum.dart';
 import 'package:frontend_app_public/model/user_model.dart';
