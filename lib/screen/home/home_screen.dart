@@ -10,9 +10,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Laporin',
-          style: TextStyle(fontWeight: FontWeight.w700),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Laporin',
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.blue.shade800,
+              child: Text('AI'),
+            ),
+          ],
         ),
       ),
       body: Center(
