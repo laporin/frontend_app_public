@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_app_public/model/report_model.dart';
+import 'package:frontend_app_public/model/report_status_enum.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -6,6 +8,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final entries = ReportModel.all();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +28,28 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
-      ),
+      body: ListView.builder(
+          padding: const EdgeInsets.all(8),
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            final report = entries[index];
+
+            return ListTile(
+              key: Key(report.id.toString()),
+              leading: CircleAvatar(
+                backgroundColor:
+                    report.status == ReportStatusEnum.completed.index
+                        ? Colors.green
+                        : Colors.grey,
+              ),
+              title: Text(report.detail),
+              subtitle: Text(report.categoryModel.name),
+              isThreeLine: true,
+              onTap: () {
+                print('clicked');
+              },
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Tambah laporan',
