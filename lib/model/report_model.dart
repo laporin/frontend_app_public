@@ -48,7 +48,7 @@ class ReportModel {
         id: 1,
         detail: 'Labore eu occaecat cillum exercitation.',
         address: 'Qui voluptate ut sit dolore cupidatat sit culpa.',
-        categoryModel: CategoryModel.one(),
+        categoryModel: CategoryModel.two(),
         city: 'Bikini Bottom',
         latitude: 12.2345345,
         longitude: 23.2345645,

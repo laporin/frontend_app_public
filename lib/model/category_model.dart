@@ -11,6 +11,10 @@ class CategoryModel {
     return CategoryModel(id: 1, name: 'Jalan');
   }
 
+  static CategoryModel two() {
+    return CategoryModel(id: 2, name: 'Ketertiban');
+  }
+
   static List<CategoryModel> all() {
     return [
       CategoryModel(id: 1, name: 'Pohon'),
