@@ -14,7 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
           'Laporin',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        centerTitle: true,
       ),
       body: Center(
         child: Column(
