@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend_app_public/model/report_model.dart';
 import 'package:frontend_app_public/model/report_status_enum.dart';
+import 'package:frontend_app_public/routes/routes.gr.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -51,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.router.push(NewReportScreenRoute());
+        },
         tooltip: 'Tambah laporan',
         child: Icon(Icons.add),
       ),

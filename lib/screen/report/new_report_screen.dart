@@ -8,8 +8,17 @@ class NewReportScreen extends StatefulWidget {
 class _NewReportScreenState extends State<NewReportScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Buat Laporan Baru',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        child: Text('New Report'),
+      ),
     );
   }
 }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_app_public/screen/home/home_screen.dart';
+import 'package:frontend_app_public/routes/routes.gr.dart';
+
+final appRouter = AppRouter();
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      routerDelegate: appRouter.delegate() ,
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }
