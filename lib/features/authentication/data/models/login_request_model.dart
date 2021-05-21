@@ -1,16 +1,16 @@
-import 'package:frontend_app_public/features/authentication/domain/entities/login_entity.dart';
+import 'package:frontend_app_public/features/authentication/domain/entities/login_request_entity.dart';
 
-class LoginModel extends LoginEntity {
+class LoginRequestModel extends LoginRequestEntity {
   final String email;
   final String password;
 
-  LoginModel({
+  LoginRequestModel({
     required this.email,
     required this.password,
   }) : super(email: email, password: password);
 
-  factory LoginModel.fromJson(Map<String, dynamic> json) {
-    return LoginModel(
+  factory LoginRequestModel.fromJson(Map<String, dynamic> json) {
+    return LoginRequestModel(
       email: json['email'],
       password: json['password'],
     );

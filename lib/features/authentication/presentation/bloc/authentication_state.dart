@@ -3,7 +3,7 @@ abstract class AuthenticationState extends Equatable {
   const AuthenticationState();
 }
 
-class AuthenticationInitial extends AuthenticationState {
+class AuthenticationInitialState extends AuthenticationState {
   @override
   List<Object> get props => [];
 }

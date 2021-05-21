@@ -36,3 +36,8 @@ class LogoutEvent extends AuthenticationEvent {
   @override
   List<Object> get props => [];
 }
+
+class AuthenticationCheckEvent extends AuthenticationEvent {
+  @override
+  List<Object> get props => [];
+}

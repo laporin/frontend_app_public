@@ -4,7 +4,10 @@ import 'package:equatable/equatable.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc() : super(AuthenticationInitial());
+  // final BackendAuthenticationRepository authenticationRepository;
+
+  AuthenticationBloc() : super(AuthenticationInitialState());
+
   @override
   Stream<AuthenticationState> mapEventToState(
     AuthenticationEvent event,
@@ -14,6 +17,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     } else if (event is RegisterEvent) {
       //
     } else if (event is LogoutEvent) {
+      //
+    } else if (event is AuthenticationCheckEvent) {
       //
     } else {
       //
