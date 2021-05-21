@@ -7,6 +7,7 @@ import 'package:frontend_app_public/features/authentication/data/datasources/aut
 import 'package:frontend_app_public/features/authentication/data/datasources/authentication_remote_data_source.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_request_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_response_model.dart';
+import 'package:frontend_app_public/features/authentication/data/models/logout_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_request_model.dart';
 import 'package:frontend_app_public/features/authentication/domain/repositories/authentication_repository.dart';
@@ -44,9 +45,19 @@ class BackendAuthenticationRepository implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<Failure, void>> deleteLogout() async {
+  Future<Either<Failure, LogoutResponseModel>> deleteLogout() async {
     try {
       final response = await remoteDataSource.deleteLogout();
+      return Right(response);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkAuthentication() async {
+    try {
+      final response = await localDataSource.isUserLoggedIn();
       return Right(response);
     } on ServerException {
       return Left(ServerFailure());
