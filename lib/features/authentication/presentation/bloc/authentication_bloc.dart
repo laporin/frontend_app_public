@@ -9,6 +9,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   Stream<AuthenticationState> mapEventToState(
     AuthenticationEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    if (event is LoginEvent) {
+      //
+    } else if (event is RegisterEvent) {
+      //
+    } else if (event is LogoutEvent) {
+      //
+    } else {
+      //
+    }
   }
 }
