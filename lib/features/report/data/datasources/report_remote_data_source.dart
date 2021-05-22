@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:frontend_app_public/core/exception/server_exception.dart';
+import 'package:frontend_app_public/env/env.dart';
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
 import 'package:injectable/injectable.dart';
@@ -19,7 +20,7 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
 
   @override
   Future<ReportsResponseModel> getReports() async {
-    final response = await dio.get("localhost:8000/api/reports");
+    final response = await dio.get("${Env.backendUrl}/api/reports");
     if (response.statusCode == 200) {
       return ReportsResponseModel.fromJson(json.decode(response.data));
     } else {
@@ -29,7 +30,7 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
 
   @override
   Future<ReportResponseModel> getReport(int id) async {
-    final response = await dio.get("localhost:8000/api/reports/$id");
+    final response = await dio.get("${Env.backendUrl}/api/reports/$id");
     if (response.statusCode == 200) {
       return ReportResponseModel.fromJson(json.decode(response.data));
     } else {
