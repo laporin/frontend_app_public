@@ -34,8 +34,8 @@ class AuthenticationBloc
     } else if (event is LogoutEvent) {
       //
     } else if (event is AuthenticationCheckEvent) {
-      final apa = await checkAuthUsecase(NoParams());
-      yield apa.fold(
+      final response = await checkAuthUsecase(NoParams());
+      yield response.fold(
         (failure) => ErrorAuthenticatedState(),
         (right) => right ? AuthenticatedState() : UnauthenticatedState(),
       );

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'package:frontend_app_public/features/report/presentation/widgets/reports_widget.dart';
 import 'package:frontend_app_public/model/report_model.dart';
 import 'package:frontend_app_public/model/report_status_enum.dart';
 import 'package:frontend_app_public/routes/routes.gr.dart';
@@ -63,28 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: ListView.builder(
-          padding: const EdgeInsets.all(8),
-          itemCount: entries.length,
-          itemBuilder: (BuildContext context, int index) {
-            final report = entries[index];
-
-            return ListTile(
-              key: Key(report.id.toString()),
-              leading: CircleAvatar(
-                backgroundColor:
-                    report.status == ReportStatusEnum.completed.index
-                        ? Colors.green
-                        : Colors.grey,
-              ),
-              title: Text(report.detail),
-              subtitle: Text(report.categoryModel.name),
-              isThreeLine: true,
-              onTap: () {
-                print('clicked');
-              },
-            );
-          }),
+      body: ReportsWidget(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.router.navigate(NewReportScreenRoute());
