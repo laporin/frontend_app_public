@@ -32,9 +32,25 @@ class _HomeScreenState extends State<HomeScreen> {
             BlocBuilder<AuthenticationBloc, AuthenticationState>(
               builder: (context, state) {
                 if (state is UnauthenticatedState) {
-                  return Text('unauthenticated');
+                  return ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () {
+                      context.router.navigate(LoginScreenRoute());
+                    },
+                    child: Text(
+                      'Login',
+                    ),
+                  );
                 } else if (state is AuthenticatedState) {
-                  return Text('authenticated');
+                  return CircleAvatar(
+                    backgroundColor: Colors.blue.shade800,
+                    child: Text('AI'),
+                  );
                 } else if (state is AuthenticationInitialState) {
                   return Text('init');
                 } else if (state is ErrorAuthenticatedState) {
@@ -71,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.router.push(NewReportScreenRoute());
+          context.router.navigate(NewReportScreenRoute());
         },
         tooltip: 'Tambah laporan',
         child: Icon(Icons.add),
