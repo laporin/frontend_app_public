@@ -4,7 +4,9 @@ import 'package:frontend_app_public/core/failure/failure.dart';
 import 'package:frontend_app_public/core/usecases/usecase.dart';
 import 'package:frontend_app_public/features/authentication/data/models/logout_response_model.dart';
 import 'package:frontend_app_public/features/authentication/domain/repositories/authentication_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class LogoutAuthenticationUsecase
     implements Usecase<LogoutResponseModel, NoParams> {
   final AuthenticationRepository repository;

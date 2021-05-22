@@ -1,4 +1,5 @@
 import 'package:frontend_app_public/services/secure_storage_service.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class AuthenticationLocalDataSource {
   Future<bool> isUserLoggedIn();
@@ -6,6 +7,7 @@ abstract class AuthenticationLocalDataSource {
 
 const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
 
+@Injectable(as: AuthenticationLocalDataSource)
 class AuthenticationLocalDataSourceImpl
     implements AuthenticationLocalDataSource {
   final SecureStorageService storageService;

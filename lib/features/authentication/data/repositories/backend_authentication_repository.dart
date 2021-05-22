@@ -11,7 +11,9 @@ import 'package:frontend_app_public/features/authentication/data/models/logout_r
 import 'package:frontend_app_public/features/authentication/data/models/register_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_request_model.dart';
 import 'package:frontend_app_public/features/authentication/domain/repositories/authentication_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: AuthenticationRepository)
 class BackendAuthenticationRepository implements AuthenticationRepository {
   final AuthenticationLocalDataSource localDataSource;
   final AuthenticationRemoteDataSource remoteDataSource;

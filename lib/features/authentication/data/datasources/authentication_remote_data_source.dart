@@ -6,6 +6,7 @@ import 'package:frontend_app_public/features/authentication/data/models/login_re
 import 'package:frontend_app_public/features/authentication/data/models/logout_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_request_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_response_model.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class AuthenticationRemoteDataSource {
   Future<LoginResponseModel> postLogin(LoginRequestModel loginRequestModel);
@@ -14,6 +15,7 @@ abstract class AuthenticationRemoteDataSource {
   Future<LogoutResponseModel> deleteLogout();
 }
 
+@Injectable(as: AuthenticationRemoteDataSource)
 class AuthenticationRemoteDataSourceImpl
     implements AuthenticationRemoteDataSource {
   final Dio dio;
