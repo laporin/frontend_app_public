@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/model/report_model.dart';
 import 'package:frontend_app_public/model/report_status_enum.dart';
 import 'package:frontend_app_public/routes/routes.gr.dart';
@@ -23,10 +25,25 @@ class _HomeScreenState extends State<HomeScreen> {
               'Laporin',
               style: TextStyle(fontWeight: FontWeight.w700),
             ),
-            CircleAvatar(
-              backgroundColor: Colors.blue.shade800,
-              child: Text('AI'),
-            ),
+            // CircleAvatar(
+            //   backgroundColor: Colors.blue.shade800,
+            //   child: Text('AI'),
+            // ),
+            BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+                if (state is UnauthenticatedState) {
+                  return Text('unauthenticated');
+                } else if (state is AuthenticatedState) {
+                  return Text('authenticated');
+                } else if (state is AuthenticationInitialState) {
+                  return Text('init');
+                } else if (state is ErrorAuthenticatedState) {
+                  return Text('error');
+                } else {
+                  return Text('else');
+                }
+              },
+            )
           ],
         ),
       ),

@@ -8,8 +8,8 @@ import 'package:frontend_app_public/screen/report/new_report_screen.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   // replaceInRouteName: 'Page,Route',
-  AutoRoute(page: InitialScreen, initial: true),
-  AutoRoute(page: HomeScreen),
+  AutoRoute(page: HomeScreen, initial: true),
+  AutoRoute(page: InitialScreen),
   AutoRoute(page: NewReportScreen),
   AutoRoute(page: DetailReportScreen),
   AutoRoute(page: LoginScreen),
