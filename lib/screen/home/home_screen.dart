@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/features/report/presentation/widgets/reports_widget.dart';
 import 'package:frontend_app_public/model/report_model.dart';
-import 'package:frontend_app_public/model/report_status_enum.dart';
 import 'package:frontend_app_public/routes/routes.gr.dart';
 
 class HomeScreen extends StatefulWidget {

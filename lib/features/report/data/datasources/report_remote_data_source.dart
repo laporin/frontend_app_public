@@ -4,12 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:frontend_app_public/core/exception/server_exception.dart';
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class ReportRemoteDataSource {
   Future<ReportsResponseModel> getReports();
   Future<ReportResponseModel> getReport(int id);
 }
 
+@Injectable(as: ReportRemoteDataSource)
 class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
   final Dio dio;
 

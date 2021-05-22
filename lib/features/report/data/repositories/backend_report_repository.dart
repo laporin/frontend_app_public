@@ -7,7 +7,9 @@ import 'package:frontend_app_public/features/report/data/models/reports_response
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
 import 'package:frontend_app_public/core/failure/failure.dart';
 import 'package:frontend_app_public/features/report/domain/repositories/report_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: ReportRepository)
 class BackendReportRepository extends ReportRepository {
   final ReportRemoteDataSource remoteDataSource;
 
