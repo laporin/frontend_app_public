@@ -33,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
+                initialValue: 'a',
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   contentPadding:
@@ -57,6 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
+                initialValue: 'a@a.a',
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -82,6 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
+                initialValue: '12345678',
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(

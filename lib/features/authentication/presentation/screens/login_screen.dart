@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
+                initialValue: 'admin@example.com',
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -58,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
+                initialValue: '12345678',
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
