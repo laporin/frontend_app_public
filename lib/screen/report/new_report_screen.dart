@@ -35,8 +35,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                maxLines: null,
-                expands: true,
+                maxLines: 4,
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
