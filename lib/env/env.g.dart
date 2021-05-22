@@ -8,7 +8,7 @@ part of 'env.dart';
 
 class _Env {
   static const String key = 'VALUE';
-  static const String keyu = 'VALUEE';
-  static const String backendUrl = 'http://34.101.214.225';
+  static const String environment = 'DEVELOPMENT';
+  static const String backendUrl = 'http://localhost:8000';
   static const bool isStudent = true;
 }

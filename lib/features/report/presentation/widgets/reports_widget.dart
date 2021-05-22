@@ -11,7 +11,7 @@ class ReportsWidget extends StatelessWidget {
       child: BlocBuilder<ReportBloc, ReportState>(
         builder: (context, state) {
           if (state is ReportInitialState) {
-            return Text('init');
+            return Text('init.');
           } else if (state is ReportLoadingState) {
             return Text('Loading...');
           } else if (state is ReportsLoadedState) {
