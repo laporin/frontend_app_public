@@ -7,7 +7,7 @@ class ReportsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ReportBloc>(),
+      create: (context) => getIt<ReportBloc>()..add(GetReportsEvent()) ,
       child: BlocBuilder<ReportBloc, ReportState>(
         builder: (context, state) {
           if (state is ReportInitialState) {
