@@ -38,9 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       context.router.navigate(LoginScreenRoute());
                     },
-                    child: Text(
-                      'Login',
-                    ),
+                    child: Text('Masuk / Daftar'),
                   );
                 } else if (state is AuthenticatedState) {
                   return CircleAvatar(
