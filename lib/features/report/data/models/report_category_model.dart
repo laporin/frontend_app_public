@@ -5,7 +5,7 @@ part 'report_category_model.freezed.dart';
 part 'report_category_model.g.dart';
 
 @freezed
-abstract class ReportCategoryModel extends ReportCategoryEntity
+class ReportCategoryModel extends ReportCategoryEntity
     with _$ReportCategoryModel {
   const factory ReportCategoryModel({
     required int id,

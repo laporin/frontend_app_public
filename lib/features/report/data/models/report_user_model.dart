@@ -1,25 +1,16 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:frontend_app_public/features/report/domain/entities/report_user_entity.dart';
 
-class ReportUserModel extends ReportUserEntity {
-  final int id;
-  final String username;
+part 'report_user_model.freezed.dart';
+part 'report_user_model.g.dart';
 
-  ReportUserModel({
-    required this.id,
-    required this.username,
-  }) : super(id: id, username: username);
+@freezed
+class ReportUserModel extends ReportUserEntity with _$ReportUserModel {
+  const factory ReportUserModel({
+    required int id,
+    required String username,
+  }) = _ReportUserModel;
 
-  factory ReportUserModel.fromJson(Map<String, dynamic> json) {
-    return ReportUserModel(
-      id: json['id'] as int,
-      username: json['username'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'username': username,
-    };
-  }
+  factory ReportUserModel.fromJson(Map<String, dynamic> json) =>
+      _$ReportUserModelFromJson(json);
 }
