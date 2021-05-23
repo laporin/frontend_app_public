@@ -5,7 +5,7 @@ part 'report_response_model.freezed.dart';
 part 'report_response_model.g.dart';
 
 @freezed
-abstract class ReportResponseModel with _$ReportResponseModel{
+class ReportResponseModel with _$ReportResponseModel{
   const factory ReportResponseModel({
     required ReportDataModel reportDataModel
   }) = _ReportResponseModel;

@@ -20,10 +20,9 @@ ReportsResponseModel _$ReportsResponseModelFromJson(Map<String, dynamic> json) {
 class _$ReportsResponseModelTearOff {
   const _$ReportsResponseModelTearOff();
 
-  _ReportsResponseModel call(
-      {required List<ReportDataModel> reportDataModels}) {
+  _ReportsResponseModel call({required List<ReportDataModel> data}) {
     return _ReportsResponseModel(
-      reportDataModels: reportDataModels,
+      data: data,
     );
   }
 
@@ -37,8 +36,7 @@ const $ReportsResponseModel = _$ReportsResponseModelTearOff();
 
 /// @nodoc
 mixin _$ReportsResponseModel {
-  List<ReportDataModel> get reportDataModels =>
-      throw _privateConstructorUsedError;
+  List<ReportDataModel> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +49,7 @@ abstract class $ReportsResponseModelCopyWith<$Res> {
   factory $ReportsResponseModelCopyWith(ReportsResponseModel value,
           $Res Function(ReportsResponseModel) then) =
       _$ReportsResponseModelCopyWithImpl<$Res>;
-  $Res call({List<ReportDataModel> reportDataModels});
+  $Res call({List<ReportDataModel> data});
 }
 
 /// @nodoc
@@ -65,12 +63,12 @@ class _$ReportsResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? reportDataModels = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      reportDataModels: reportDataModels == freezed
-          ? _value.reportDataModels
-          : reportDataModels // ignore: cast_nullable_to_non_nullable
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as List<ReportDataModel>,
     ));
   }
@@ -83,7 +81,7 @@ abstract class _$ReportsResponseModelCopyWith<$Res>
           $Res Function(_ReportsResponseModel) then) =
       __$ReportsResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<ReportDataModel> reportDataModels});
+  $Res call({List<ReportDataModel> data});
 }
 
 /// @nodoc
@@ -99,12 +97,12 @@ class __$ReportsResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? reportDataModels = freezed,
+    Object? data = freezed,
   }) {
     return _then(_ReportsResponseModel(
-      reportDataModels: reportDataModels == freezed
-          ? _value.reportDataModels
-          : reportDataModels // ignore: cast_nullable_to_non_nullable
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as List<ReportDataModel>,
     ));
   }
@@ -113,32 +111,30 @@ class __$ReportsResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ReportsResponseModel implements _ReportsResponseModel {
-  const _$_ReportsResponseModel({required this.reportDataModels});
+  const _$_ReportsResponseModel({required this.data});
 
   factory _$_ReportsResponseModel.fromJson(Map<String, dynamic> json) =>
       _$_$_ReportsResponseModelFromJson(json);
 
   @override
-  final List<ReportDataModel> reportDataModels;
+  final List<ReportDataModel> data;
 
   @override
   String toString() {
-    return 'ReportsResponseModel(reportDataModels: $reportDataModels)';
+    return 'ReportsResponseModel(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ReportsResponseModel &&
-            (identical(other.reportDataModels, reportDataModels) ||
-                const DeepCollectionEquality()
-                    .equals(other.reportDataModels, reportDataModels)));
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(reportDataModels);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -153,16 +149,14 @@ class _$_ReportsResponseModel implements _ReportsResponseModel {
 }
 
 abstract class _ReportsResponseModel implements ReportsResponseModel {
-  const factory _ReportsResponseModel(
-          {required List<ReportDataModel> reportDataModels}) =
+  const factory _ReportsResponseModel({required List<ReportDataModel> data}) =
       _$_ReportsResponseModel;
 
   factory _ReportsResponseModel.fromJson(Map<String, dynamic> json) =
       _$_ReportsResponseModel.fromJson;
 
   @override
-  List<ReportDataModel> get reportDataModels =>
-      throw _privateConstructorUsedError;
+  List<ReportDataModel> get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ReportsResponseModelCopyWith<_ReportsResponseModel> get copyWith =>

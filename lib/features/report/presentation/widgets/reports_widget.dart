@@ -15,7 +15,7 @@ class ReportsWidget extends StatelessWidget {
           } else if (state is ReportLoadingState) {
             return Text('Loading...');
           } else if (state is ReportsLoadedState) {
-            final entries = state.reportsResponseModel.reportDataModel;
+            final entries = state.reportsResponseModel.data;
 
             return ListView.builder(
               padding: const EdgeInsets.all(8),
@@ -27,7 +27,7 @@ class ReportsWidget extends StatelessWidget {
                   key: Key(report.id.toString()),
                   leading: CircleAvatar(backgroundColor: Colors.green),
                   title: Text(report.detail),
-                  subtitle: Text(report.reportCategoryModel.name),
+                  subtitle: Text(report.category.name),
                   isThreeLine: true,
                   onTap: () {
                     print('clicked');

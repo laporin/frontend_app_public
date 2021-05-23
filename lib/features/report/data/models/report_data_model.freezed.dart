@@ -23,8 +23,8 @@ class _$ReportDataModelTearOff {
   _ReportDataModel call(
       {required int id,
       required String serial,
-      required ReportUserModel reportUserModel,
-      required ReportCategoryModel reportCategoryModel,
+      required ReportUserModel user,
+      required ReportCategoryModel category,
       required String detail,
       required String address,
       required String city,
@@ -32,14 +32,14 @@ class _$ReportDataModelTearOff {
       required double latitude,
       required double longitude,
       required bool private,
-      required List<ReportImageModel> reportImageModels,
+      required List<ReportImageModel> images,
       required String createdAt,
       required String updatedAt}) {
     return _ReportDataModel(
       id: id,
       serial: serial,
-      reportUserModel: reportUserModel,
-      reportCategoryModel: reportCategoryModel,
+      user: user,
+      category: category,
       detail: detail,
       address: address,
       city: city,
@@ -47,7 +47,7 @@ class _$ReportDataModelTearOff {
       latitude: latitude,
       longitude: longitude,
       private: private,
-      reportImageModels: reportImageModels,
+      images: images,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -65,9 +65,8 @@ const $ReportDataModel = _$ReportDataModelTearOff();
 mixin _$ReportDataModel {
   int get id => throw _privateConstructorUsedError;
   String get serial => throw _privateConstructorUsedError;
-  ReportUserModel get reportUserModel => throw _privateConstructorUsedError;
-  ReportCategoryModel get reportCategoryModel =>
-      throw _privateConstructorUsedError;
+  ReportUserModel get user => throw _privateConstructorUsedError;
+  ReportCategoryModel get category => throw _privateConstructorUsedError;
   String get detail => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
@@ -75,8 +74,7 @@ mixin _$ReportDataModel {
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
   bool get private => throw _privateConstructorUsedError;
-  List<ReportImageModel> get reportImageModels =>
-      throw _privateConstructorUsedError;
+  List<ReportImageModel> get images => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get updatedAt => throw _privateConstructorUsedError;
 
@@ -94,8 +92,8 @@ abstract class $ReportDataModelCopyWith<$Res> {
   $Res call(
       {int id,
       String serial,
-      ReportUserModel reportUserModel,
-      ReportCategoryModel reportCategoryModel,
+      ReportUserModel user,
+      ReportCategoryModel category,
       String detail,
       String address,
       String city,
@@ -103,12 +101,12 @@ abstract class $ReportDataModelCopyWith<$Res> {
       double latitude,
       double longitude,
       bool private,
-      List<ReportImageModel> reportImageModels,
+      List<ReportImageModel> images,
       String createdAt,
       String updatedAt});
 
-  $ReportUserModelCopyWith<$Res> get reportUserModel;
-  $ReportCategoryModelCopyWith<$Res> get reportCategoryModel;
+  $ReportUserModelCopyWith<$Res> get user;
+  $ReportCategoryModelCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -124,8 +122,8 @@ class _$ReportDataModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? serial = freezed,
-    Object? reportUserModel = freezed,
-    Object? reportCategoryModel = freezed,
+    Object? user = freezed,
+    Object? category = freezed,
     Object? detail = freezed,
     Object? address = freezed,
     Object? city = freezed,
@@ -133,7 +131,7 @@ class _$ReportDataModelCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? private = freezed,
-    Object? reportImageModels = freezed,
+    Object? images = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -146,13 +144,13 @@ class _$ReportDataModelCopyWithImpl<$Res>
           ? _value.serial
           : serial // ignore: cast_nullable_to_non_nullable
               as String,
-      reportUserModel: reportUserModel == freezed
-          ? _value.reportUserModel
-          : reportUserModel // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as ReportUserModel,
-      reportCategoryModel: reportCategoryModel == freezed
-          ? _value.reportCategoryModel
-          : reportCategoryModel // ignore: cast_nullable_to_non_nullable
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as ReportCategoryModel,
       detail: detail == freezed
           ? _value.detail
@@ -182,9 +180,9 @@ class _$ReportDataModelCopyWithImpl<$Res>
           ? _value.private
           : private // ignore: cast_nullable_to_non_nullable
               as bool,
-      reportImageModels: reportImageModels == freezed
-          ? _value.reportImageModels
-          : reportImageModels // ignore: cast_nullable_to_non_nullable
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ReportImageModel>,
       createdAt: createdAt == freezed
           ? _value.createdAt
@@ -198,17 +196,16 @@ class _$ReportDataModelCopyWithImpl<$Res>
   }
 
   @override
-  $ReportUserModelCopyWith<$Res> get reportUserModel {
-    return $ReportUserModelCopyWith<$Res>(_value.reportUserModel, (value) {
-      return _then(_value.copyWith(reportUserModel: value));
+  $ReportUserModelCopyWith<$Res> get user {
+    return $ReportUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 
   @override
-  $ReportCategoryModelCopyWith<$Res> get reportCategoryModel {
-    return $ReportCategoryModelCopyWith<$Res>(_value.reportCategoryModel,
-        (value) {
-      return _then(_value.copyWith(reportCategoryModel: value));
+  $ReportCategoryModelCopyWith<$Res> get category {
+    return $ReportCategoryModelCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value));
     });
   }
 }
@@ -223,8 +220,8 @@ abstract class _$ReportDataModelCopyWith<$Res>
   $Res call(
       {int id,
       String serial,
-      ReportUserModel reportUserModel,
-      ReportCategoryModel reportCategoryModel,
+      ReportUserModel user,
+      ReportCategoryModel category,
       String detail,
       String address,
       String city,
@@ -232,14 +229,14 @@ abstract class _$ReportDataModelCopyWith<$Res>
       double latitude,
       double longitude,
       bool private,
-      List<ReportImageModel> reportImageModels,
+      List<ReportImageModel> images,
       String createdAt,
       String updatedAt});
 
   @override
-  $ReportUserModelCopyWith<$Res> get reportUserModel;
+  $ReportUserModelCopyWith<$Res> get user;
   @override
-  $ReportCategoryModelCopyWith<$Res> get reportCategoryModel;
+  $ReportCategoryModelCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -257,8 +254,8 @@ class __$ReportDataModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? serial = freezed,
-    Object? reportUserModel = freezed,
-    Object? reportCategoryModel = freezed,
+    Object? user = freezed,
+    Object? category = freezed,
     Object? detail = freezed,
     Object? address = freezed,
     Object? city = freezed,
@@ -266,7 +263,7 @@ class __$ReportDataModelCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? private = freezed,
-    Object? reportImageModels = freezed,
+    Object? images = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -279,13 +276,13 @@ class __$ReportDataModelCopyWithImpl<$Res>
           ? _value.serial
           : serial // ignore: cast_nullable_to_non_nullable
               as String,
-      reportUserModel: reportUserModel == freezed
-          ? _value.reportUserModel
-          : reportUserModel // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as ReportUserModel,
-      reportCategoryModel: reportCategoryModel == freezed
-          ? _value.reportCategoryModel
-          : reportCategoryModel // ignore: cast_nullable_to_non_nullable
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as ReportCategoryModel,
       detail: detail == freezed
           ? _value.detail
@@ -315,9 +312,9 @@ class __$ReportDataModelCopyWithImpl<$Res>
           ? _value.private
           : private // ignore: cast_nullable_to_non_nullable
               as bool,
-      reportImageModels: reportImageModels == freezed
-          ? _value.reportImageModels
-          : reportImageModels // ignore: cast_nullable_to_non_nullable
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ReportImageModel>,
       createdAt: createdAt == freezed
           ? _value.createdAt
@@ -337,8 +334,8 @@ class _$_ReportDataModel implements _ReportDataModel {
   const _$_ReportDataModel(
       {required this.id,
       required this.serial,
-      required this.reportUserModel,
-      required this.reportCategoryModel,
+      required this.user,
+      required this.category,
       required this.detail,
       required this.address,
       required this.city,
@@ -346,7 +343,7 @@ class _$_ReportDataModel implements _ReportDataModel {
       required this.latitude,
       required this.longitude,
       required this.private,
-      required this.reportImageModels,
+      required this.images,
       required this.createdAt,
       required this.updatedAt});
 
@@ -358,9 +355,9 @@ class _$_ReportDataModel implements _ReportDataModel {
   @override
   final String serial;
   @override
-  final ReportUserModel reportUserModel;
+  final ReportUserModel user;
   @override
-  final ReportCategoryModel reportCategoryModel;
+  final ReportCategoryModel category;
   @override
   final String detail;
   @override
@@ -376,7 +373,7 @@ class _$_ReportDataModel implements _ReportDataModel {
   @override
   final bool private;
   @override
-  final List<ReportImageModel> reportImageModels;
+  final List<ReportImageModel> images;
   @override
   final String createdAt;
   @override
@@ -384,7 +381,7 @@ class _$_ReportDataModel implements _ReportDataModel {
 
   @override
   String toString() {
-    return 'ReportDataModel(id: $id, serial: $serial, reportUserModel: $reportUserModel, reportCategoryModel: $reportCategoryModel, detail: $detail, address: $address, city: $city, subdistrict: $subdistrict, latitude: $latitude, longitude: $longitude, private: $private, reportImageModels: $reportImageModels, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ReportDataModel(id: $id, serial: $serial, user: $user, category: $category, detail: $detail, address: $address, city: $city, subdistrict: $subdistrict, latitude: $latitude, longitude: $longitude, private: $private, images: $images, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -395,12 +392,11 @@ class _$_ReportDataModel implements _ReportDataModel {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.serial, serial) ||
                 const DeepCollectionEquality().equals(other.serial, serial)) &&
-            (identical(other.reportUserModel, reportUserModel) ||
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.category, category) ||
                 const DeepCollectionEquality()
-                    .equals(other.reportUserModel, reportUserModel)) &&
-            (identical(other.reportCategoryModel, reportCategoryModel) ||
-                const DeepCollectionEquality()
-                    .equals(other.reportCategoryModel, reportCategoryModel)) &&
+                    .equals(other.category, category)) &&
             (identical(other.detail, detail) ||
                 const DeepCollectionEquality().equals(other.detail, detail)) &&
             (identical(other.address, address) ||
@@ -420,9 +416,8 @@ class _$_ReportDataModel implements _ReportDataModel {
             (identical(other.private, private) ||
                 const DeepCollectionEquality()
                     .equals(other.private, private)) &&
-            (identical(other.reportImageModels, reportImageModels) ||
-                const DeepCollectionEquality()
-                    .equals(other.reportImageModels, reportImageModels)) &&
+            (identical(other.images, images) ||
+                const DeepCollectionEquality().equals(other.images, images)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)) &&
@@ -436,8 +431,8 @@ class _$_ReportDataModel implements _ReportDataModel {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(serial) ^
-      const DeepCollectionEquality().hash(reportUserModel) ^
-      const DeepCollectionEquality().hash(reportCategoryModel) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(detail) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(city) ^
@@ -445,7 +440,7 @@ class _$_ReportDataModel implements _ReportDataModel {
       const DeepCollectionEquality().hash(latitude) ^
       const DeepCollectionEquality().hash(longitude) ^
       const DeepCollectionEquality().hash(private) ^
-      const DeepCollectionEquality().hash(reportImageModels) ^
+      const DeepCollectionEquality().hash(images) ^
       const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(updatedAt);
 
@@ -464,8 +459,8 @@ abstract class _ReportDataModel implements ReportDataModel {
   const factory _ReportDataModel(
       {required int id,
       required String serial,
-      required ReportUserModel reportUserModel,
-      required ReportCategoryModel reportCategoryModel,
+      required ReportUserModel user,
+      required ReportCategoryModel category,
       required String detail,
       required String address,
       required String city,
@@ -473,7 +468,7 @@ abstract class _ReportDataModel implements ReportDataModel {
       required double latitude,
       required double longitude,
       required bool private,
-      required List<ReportImageModel> reportImageModels,
+      required List<ReportImageModel> images,
       required String createdAt,
       required String updatedAt}) = _$_ReportDataModel;
 
@@ -485,10 +480,9 @@ abstract class _ReportDataModel implements ReportDataModel {
   @override
   String get serial => throw _privateConstructorUsedError;
   @override
-  ReportUserModel get reportUserModel => throw _privateConstructorUsedError;
+  ReportUserModel get user => throw _privateConstructorUsedError;
   @override
-  ReportCategoryModel get reportCategoryModel =>
-      throw _privateConstructorUsedError;
+  ReportCategoryModel get category => throw _privateConstructorUsedError;
   @override
   String get detail => throw _privateConstructorUsedError;
   @override
@@ -504,8 +498,7 @@ abstract class _ReportDataModel implements ReportDataModel {
   @override
   bool get private => throw _privateConstructorUsedError;
   @override
-  List<ReportImageModel> get reportImageModels =>
-      throw _privateConstructorUsedError;
+  List<ReportImageModel> get images => throw _privateConstructorUsedError;
   @override
   String get createdAt => throw _privateConstructorUsedError;
   @override
