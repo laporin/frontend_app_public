@@ -41,9 +41,43 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text('Masuk / Daftar'),
                   );
                 } else if (state is AuthenticatedState) {
-                  return CircleAvatar(
-                    backgroundColor: Colors.blue.shade800,
-                    child: Text('AI'),
+                  return InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text('Lihat daftar laporan saya'),
+                                ),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                      Colors.red,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    BlocProvider.of<AuthenticationBloc>(context)
+                                        .add(LogoutEvent());
+                                  },
+                                  child: Text('Keluar aplikasi'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.blue.shade800,
+                      child: Text('AI'),
+                    ),
                   );
                 } else if (state is AuthenticationInitialState) {
                   return Text('init');

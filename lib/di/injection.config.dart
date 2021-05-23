@@ -96,6 +96,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       reportUsecase: get<_i18.GetReportUsecase>()));
   gh.factory<_i24.AuthenticationBloc>(() => _i24.AuthenticationBloc(
       loginUsecase: get<_i20.LoginAuthenticationUsecase>(),
+      logoutUsecase: get<_i21.LogoutAuthenticationUsecase>(),
       registerUsecase: get<_i22.RegisterAuthenticationUsecase>(),
       checkAuthUsecase: get<_i16.CheckAuthenticationUsecase>()));
   return get;

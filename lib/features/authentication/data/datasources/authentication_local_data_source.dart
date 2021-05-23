@@ -7,6 +7,7 @@ abstract class AuthenticationLocalDataSource {
   Future<bool> isUserLoggedIn();
   Future<void> saveLoginCredentials(LoginResponseModel data);
   Future<void> saveRegisterCredentials(RegisterResponseModel data);
+  Future<void> deleteAuthCredentials();
 }
 
 const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
@@ -32,7 +33,9 @@ class AuthenticationLocalDataSourceImpl
   Future<void> saveLoginCredentials(LoginResponseModel data) async {
     return Future.value([
       await storageService.create(
-          key: ACCESS_TOKEN_KEY, value: data.accessToken),
+        key: ACCESS_TOKEN_KEY,
+        value: data.accessToken,
+      ),
       await storageService.create(key: TOKEN_TYPE_KEY, value: data.tokenType),
     ]);
   }
@@ -43,6 +46,14 @@ class AuthenticationLocalDataSourceImpl
       await storageService.create(
           key: ACCESS_TOKEN_KEY, value: data.accessToken),
       await storageService.create(key: TOKEN_TYPE_KEY, value: data.tokenType),
+    ]);
+  }
+
+  @override
+  Future<void> deleteAuthCredentials() async {
+    return Future.value([
+      await storageService.delete(key: ACCESS_TOKEN_KEY),
+      await storageService.delete(key: TOKEN_TYPE_KEY),
     ]);
   }
 }
