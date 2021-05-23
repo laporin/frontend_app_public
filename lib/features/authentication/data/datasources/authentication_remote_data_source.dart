@@ -28,8 +28,10 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<RegisterResponseModel> postRegister(
       RegisterRequestModel registerRequestModel) async {
-    final response = await dio.post('${Env.backendUrl}/api/register',
-        data: registerRequestModel);
+    final response = await dio.post(
+      '${Env.backendUrl}/api/register',
+      data: registerRequestModel,
+    );
     if (response.statusCode == 200) {
       return RegisterResponseModel.fromJson(json.decode(response.data));
     } else {

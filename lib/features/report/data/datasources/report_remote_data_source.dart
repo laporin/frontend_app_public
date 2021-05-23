@@ -22,7 +22,9 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
   Future<ReportsResponseModel> getReports() async {
     final response = await dio.get("${Env.backendUrl}/api/reports");
     if (response.statusCode == 200) {
-      return ReportsResponseModel.fromJson(json.decode(response.data));
+      print(response.data);
+      var apa = json.decode(response.data);
+      return ReportsResponseModel.fromJson(apa);
     } else {
       throw ServerException();
     }

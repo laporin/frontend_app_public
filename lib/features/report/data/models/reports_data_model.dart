@@ -55,8 +55,8 @@ class ReportDataModel extends ReportDataEntity {
     return ReportDataModel(
       id: json['id'] as int,
       serial: json['serial'],
-      reportUserModel: json['user'],
-      reportCategoryModel: json['category'],
+      reportUserModel: json['user'] as ReportUserModel,
+      reportCategoryModel: json['category'] as ReportCategoryModel,
       detail: json['detail'],
       address: json['address'],
       city: json['city'],
@@ -64,7 +64,7 @@ class ReportDataModel extends ReportDataEntity {
       latitude: json['latitude'] as double,
       longitude: json['longitude'] as double,
       private: json['private'] as bool,
-      reportImageModels: json['images'],
+      reportImageModels: json['images'] as List<ReportImageModel>,
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
     );

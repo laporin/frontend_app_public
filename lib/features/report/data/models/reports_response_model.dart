@@ -4,12 +4,13 @@ import 'package:frontend_app_public/features/report/domain/entities/reports_resp
 class ReportsResponseModel extends ReportsResponseEntity {
   final List<ReportDataModel> reportDataModel;
 
-  ReportsResponseModel({required this.reportDataModel})
-      : super(reportDataEntities: reportDataModel);
+  ReportsResponseModel({
+    required this.reportDataModel,
+  }) : super(reportDataEntities: reportDataModel);
 
   factory ReportsResponseModel.fromJson(Map<String, dynamic> json) {
     return ReportsResponseModel(
-      reportDataModel: json['data'],
+      reportDataModel: json['data'] as List<ReportDataModel>,
     );
   }
 
