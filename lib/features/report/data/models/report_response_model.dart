@@ -7,7 +7,7 @@ part 'report_response_model.g.dart';
 @freezed
 class ReportResponseModel with _$ReportResponseModel{
   const factory ReportResponseModel({
-    required ReportDataModel reportDataModel
+    required ReportDataModel data
   }) = _ReportResponseModel;
 
   factory ReportResponseModel.fromJson(Map<String, dynamic> json) => _$ReportResponseModelFromJson(json);

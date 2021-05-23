@@ -66,8 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is AuthenticatedState) {
             return FloatingActionButton(
               onPressed: () {
-                // var apa = BlocProvider.of<AuthenticationBloc>(context);
-                // apa.checkAuthUsecase(NoParams());
                 context.router.navigate(NewReportScreenRoute());
               },
               tooltip: 'Tambah laporan',
@@ -76,6 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
           } else {
             return FloatingActionButton(
               onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Mohon masuk atau daftar dahulu untuk membuat laporan.',
+                    ),
+                  ),
+                );
                 print('apa ya');
               },
               child: Icon(Icons.account_balance),

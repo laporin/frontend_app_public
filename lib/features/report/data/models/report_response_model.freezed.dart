@@ -20,9 +20,9 @@ ReportResponseModel _$ReportResponseModelFromJson(Map<String, dynamic> json) {
 class _$ReportResponseModelTearOff {
   const _$ReportResponseModelTearOff();
 
-  _ReportResponseModel call({required ReportDataModel reportDataModel}) {
+  _ReportResponseModel call({required ReportDataModel data}) {
     return _ReportResponseModel(
-      reportDataModel: reportDataModel,
+      data: data,
     );
   }
 
@@ -36,7 +36,7 @@ const $ReportResponseModel = _$ReportResponseModelTearOff();
 
 /// @nodoc
 mixin _$ReportResponseModel {
-  ReportDataModel get reportDataModel => throw _privateConstructorUsedError;
+  ReportDataModel get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +49,9 @@ abstract class $ReportResponseModelCopyWith<$Res> {
   factory $ReportResponseModelCopyWith(
           ReportResponseModel value, $Res Function(ReportResponseModel) then) =
       _$ReportResponseModelCopyWithImpl<$Res>;
-  $Res call({ReportDataModel reportDataModel});
+  $Res call({ReportDataModel data});
 
-  $ReportDataModelCopyWith<$Res> get reportDataModel;
+  $ReportDataModelCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -65,20 +65,20 @@ class _$ReportResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? reportDataModel = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      reportDataModel: reportDataModel == freezed
-          ? _value.reportDataModel
-          : reportDataModel // ignore: cast_nullable_to_non_nullable
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as ReportDataModel,
     ));
   }
 
   @override
-  $ReportDataModelCopyWith<$Res> get reportDataModel {
-    return $ReportDataModelCopyWith<$Res>(_value.reportDataModel, (value) {
-      return _then(_value.copyWith(reportDataModel: value));
+  $ReportDataModelCopyWith<$Res> get data {
+    return $ReportDataModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
     });
   }
 }
@@ -90,10 +90,10 @@ abstract class _$ReportResponseModelCopyWith<$Res>
           $Res Function(_ReportResponseModel) then) =
       __$ReportResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({ReportDataModel reportDataModel});
+  $Res call({ReportDataModel data});
 
   @override
-  $ReportDataModelCopyWith<$Res> get reportDataModel;
+  $ReportDataModelCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -109,12 +109,12 @@ class __$ReportResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? reportDataModel = freezed,
+    Object? data = freezed,
   }) {
     return _then(_ReportResponseModel(
-      reportDataModel: reportDataModel == freezed
-          ? _value.reportDataModel
-          : reportDataModel // ignore: cast_nullable_to_non_nullable
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as ReportDataModel,
     ));
   }
@@ -123,32 +123,30 @@ class __$ReportResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ReportResponseModel implements _ReportResponseModel {
-  const _$_ReportResponseModel({required this.reportDataModel});
+  const _$_ReportResponseModel({required this.data});
 
   factory _$_ReportResponseModel.fromJson(Map<String, dynamic> json) =>
       _$_$_ReportResponseModelFromJson(json);
 
   @override
-  final ReportDataModel reportDataModel;
+  final ReportDataModel data;
 
   @override
   String toString() {
-    return 'ReportResponseModel(reportDataModel: $reportDataModel)';
+    return 'ReportResponseModel(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ReportResponseModel &&
-            (identical(other.reportDataModel, reportDataModel) ||
-                const DeepCollectionEquality()
-                    .equals(other.reportDataModel, reportDataModel)));
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(reportDataModel);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -163,14 +161,14 @@ class _$_ReportResponseModel implements _ReportResponseModel {
 }
 
 abstract class _ReportResponseModel implements ReportResponseModel {
-  const factory _ReportResponseModel(
-      {required ReportDataModel reportDataModel}) = _$_ReportResponseModel;
+  const factory _ReportResponseModel({required ReportDataModel data}) =
+      _$_ReportResponseModel;
 
   factory _ReportResponseModel.fromJson(Map<String, dynamic> json) =
       _$_ReportResponseModel.fromJson;
 
   @override
-  ReportDataModel get reportDataModel => throw _privateConstructorUsedError;
+  ReportDataModel get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ReportResponseModelCopyWith<_ReportResponseModel> get copyWith =>

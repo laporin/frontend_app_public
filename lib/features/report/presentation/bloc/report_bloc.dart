@@ -39,7 +39,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
       final responseOrError = await reportUsecase(event.id);
       yield responseOrError.fold(
         (left) => ReportErrorState(message: 'Something went wrong'),
-        (right) => ReportLoadedState(reportResponseModel: right),
+        (right) => ReportLoadedState(data: right),
       );
     } else {
       yield ReportErrorState(message: 'Something went wrong.');

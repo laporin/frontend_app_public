@@ -24,12 +24,12 @@ class ReportsLoadedState extends ReportState {
 }
 
 class ReportLoadedState extends ReportState {
-  final ReportResponseModel reportResponseModel;
+  final ReportResponseModel data;
 
-  ReportLoadedState({required this.reportResponseModel});
+  ReportLoadedState({required this.data});
 
   @override
-  List<Object?> get props => [reportResponseModel];
+  List<Object?> get props => [data];
 }
 
 class ReportErrorState extends ReportState {

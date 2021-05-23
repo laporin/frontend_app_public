@@ -1,7 +1,10 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/di/injection.dart';
 import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
+import 'package:frontend_app_public/routes/routes.gr.dart';
 
 class ReportsWidget extends StatelessWidget {
   @override
@@ -13,7 +16,9 @@ class ReportsWidget extends StatelessWidget {
           if (state is ReportInitialState) {
             return Text('init.');
           } else if (state is ReportLoadingState) {
-            return Text('Loading...');
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (state is ReportsLoadedState) {
             final entries = state.reportsResponseModel.data;
 
@@ -35,6 +40,7 @@ class ReportsWidget extends StatelessWidget {
                     maxLines: 2,
                   ),
                   onTap: () {
+                    context.router.navigate(ReportScreenRoute(id: report.id));
                     print('clicked');
                   },
                 );
