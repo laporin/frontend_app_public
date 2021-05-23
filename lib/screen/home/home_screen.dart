@@ -25,10 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
               'Laporin',
               style: TextStyle(fontWeight: FontWeight.w700),
             ),
-            // CircleAvatar(
-            //   backgroundColor: Colors.blue.shade800,
-            //   child: Text('AI'),
-            // ),
             BlocBuilder<AuthenticationBloc, AuthenticationState>(
               builder: (context, state) {
                 if (state is UnauthenticatedState) {
@@ -64,12 +60,28 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: ReportsWidget(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.router.navigate(NewReportScreenRoute());
+      floatingActionButton:
+          BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is AuthenticatedState) {
+            return FloatingActionButton(
+              onPressed: () {
+                // var apa = BlocProvider.of<AuthenticationBloc>(context);
+                // apa.checkAuthUsecase(NoParams());
+                context.router.navigate(NewReportScreenRoute());
+              },
+              tooltip: 'Tambah laporan',
+              child: Icon(Icons.add),
+            );
+          } else {
+            return FloatingActionButton(
+              onPressed: () {
+                print('apa ya');
+              },
+              child: Icon(Icons.account_balance),
+            );
+          }
         },
-        tooltip: 'Tambah laporan',
-        child: Icon(Icons.add),
       ),
     );
   }
