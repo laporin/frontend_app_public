@@ -18,3 +18,9 @@ jobs:
           channel: "stable" # dev, stable, beta
       - run: flutter pub get
       - run: flutter build apk
+
+      # Upload generated apk to the artifacts.
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
