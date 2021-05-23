@@ -1,28 +1,42 @@
-import 'package:frontend_app_public/features/authentication/domain/entities/login_response_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RegisterResponseModel extends LoginResponseEntity {
-  final String accessToken;
-  final String tokenType;
+part 'register_response_model.freezed.dart';
+part 'register_response_model.g.dart';
 
-  RegisterResponseModel({
-    required this.accessToken,
-    required this.tokenType,
-  }) : super(
-          accessToken: accessToken,
-          tokenType: tokenType,
-        );
+@freezed
+class RegisterResponseModel with _$RegisterResponseModel {
+  const factory RegisterResponseModel({
+    required String accessToken,
+    required String tokenType,
+  }) = _RegisterResponseModel;
 
-  factory RegisterResponseModel.fromJson(Map<String, dynamic> json) {
-    return RegisterResponseModel(
-      accessToken: json['access_token'],
-      tokenType: json['token_type'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'access_token': accessToken,
-      'token_type': tokenType,
-    };
-  }
+  factory RegisterResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$RegisterResponseModelFromJson(json);
 }
+
+// class RegisterResponseModel extends LoginResponseEntity {
+//   final String accessToken;
+//   final String tokenType;
+
+//   RegisterResponseModel({
+//     required this.accessToken,
+//     required this.tokenType,
+//   }) : super(
+//           accessToken: accessToken,
+//           tokenType: tokenType,
+//         );
+
+//   factory RegisterResponseModel.fromJson(Map<String, dynamic> json) {
+//     return RegisterResponseModel(
+//       accessToken: json['access_token'],
+//       tokenType: json['token_type'],
+//     );
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'access_token': accessToken,
+//       'token_type': tokenType,
+//     };
+//   }
+// }
