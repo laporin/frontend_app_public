@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:frontend_app_public/core/exception/server_exception.dart';
 import 'package:frontend_app_public/env/env.dart';
@@ -22,8 +20,6 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
   Future<ReportsResponseModel> getReports() async {
     final response = await dio.get("${Env.backendUrl}/api/reports");
     if (response.statusCode == 200) {
-      // print(response.data);
-      // var apa = json.decode(response.data);
       return ReportsResponseModel.fromJson(response.data);
     } else {
       throw ServerException();
@@ -34,7 +30,7 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
   Future<ReportResponseModel> getReport(int id) async {
     final response = await dio.get("${Env.backendUrl}/api/reports/$id");
     if (response.statusCode == 200) {
-      return ReportResponseModel.fromJson(json.decode(response.data));
+      return ReportResponseModel.fromJson(response.data);
     } else {
       throw ServerException();
     }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:frontend_app_public/core/exception/server_exception.dart';
 import 'package:frontend_app_public/env/env.dart';
@@ -33,7 +32,7 @@ class AuthenticationRemoteDataSourceImpl
       data: registerRequestModel,
     );
     if (response.statusCode == 200) {
-      return RegisterResponseModel.fromJson(json.decode(response.data));
+      return RegisterResponseModel.fromJson(response.data);
     } else {
       throw ServerException();
     }
@@ -45,7 +44,7 @@ class AuthenticationRemoteDataSourceImpl
     final response =
         await dio.post('${Env.backendUrl}/api/login', data: loginRequestModel);
     if (response.statusCode == 200) {
-      return LoginResponseModel.fromJson(json.decode(response.data));
+      return LoginResponseModel.fromJson(response.data);
     } else {
       throw ServerException();
     }
@@ -55,7 +54,7 @@ class AuthenticationRemoteDataSourceImpl
   Future<LogoutResponseModel> deleteLogout() async {
     final response = await dio.delete('${Env.backendUrl}/api/logout');
     if (response.statusCode == 200) {
-      return LogoutResponseModel.fromJson(json.decode(response.data));
+      return LogoutResponseModel.fromJson(response.data);
     } else {
       throw ServerException();
     }
