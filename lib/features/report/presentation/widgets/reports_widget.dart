@@ -22,13 +22,13 @@ class ReportsWidget extends StatelessWidget {
               itemCount: entries.length,
               itemBuilder: (BuildContext context, int index) {
                 final report = entries[index];
+                final title = "${report.category.name} - ${report.subdistrict}, ${report.city}.";
 
                 return ListTile(
                   key: Key(report.id.toString()),
-                  leading: CircleAvatar(backgroundColor: Colors.green),
-                  title: Text(report.detail),
-                  subtitle: Text(report.category.name),
-                  isThreeLine: true,
+                  leading: CircleAvatar(backgroundColor: Colors.blue),
+                  title: Text(title),
+                  subtitle: Text(report.detail),
                   onTap: () {
                     print('clicked');
                   },
