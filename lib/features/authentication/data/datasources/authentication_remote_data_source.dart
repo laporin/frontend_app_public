@@ -40,9 +40,12 @@ class AuthenticationRemoteDataSourceImpl
 
   @override
   Future<LoginResponseModel> postLogin(
-      LoginRequestModel loginRequestModel) async {
-    final response =
-        await dio.post('${Env.backendUrl}/api/login', data: loginRequestModel);
+    LoginRequestModel loginRequestModel,
+  ) async {
+    final response = await dio.post(
+      '${Env.backendUrl}/api/login',
+      data: loginRequestModel,
+    );
     if (response.statusCode == 200) {
       return LoginResponseModel.fromJson(response.data);
     } else {

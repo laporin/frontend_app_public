@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend_app_public/features/authentication/data/models/login_request_model.dart';
+import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/routes/routes.gr.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -9,6 +12,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController(text: 'admin@example.com');
+  final _passwordController = TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                initialValue: 'admin@example.com',
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -59,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                initialValue: '12345678',
+                controller: _passwordController,
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
@@ -84,6 +89,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         content: Text('Processing Data'),
                       ),
                     );
+                    final loginData = LoginRequestModel(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                    BlocProvider.of<AuthenticationBloc>(context).add(
+                      LoginEvent(data: loginData),
+                    );
+                    context.router.navigate(HomeScreenRoute());
                   }
                 },
                 child: Text(

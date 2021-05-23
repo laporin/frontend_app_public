@@ -18,7 +18,8 @@ class LoginAuthenticationUsecase
 
   @override
   Future<Either<Failure, LoginResponseModel>> call(
-      LoginRequestModel model) async {
+    LoginRequestModel model,
+  ) async {
     return await repository.postLogin(model);
   }
 }

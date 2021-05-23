@@ -13,6 +13,11 @@ class AuthenticatedState extends AuthenticationState {
   List<Object> get props => [];
 }
 
+class AuthenticationLoadingState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
+
 class UnauthenticatedState extends AuthenticationState {
   @override
   List<Object> get props => [];
