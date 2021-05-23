@@ -7,7 +7,7 @@ class ReportsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ReportBloc>()..add(GetReportsEvent()) ,
+      create: (context) => getIt<ReportBloc>()..add(GetReportsEvent()),
       child: BlocBuilder<ReportBloc, ReportState>(
         builder: (context, state) {
           if (state is ReportInitialState) {
@@ -22,13 +22,18 @@ class ReportsWidget extends StatelessWidget {
               itemCount: entries.length,
               itemBuilder: (BuildContext context, int index) {
                 final report = entries[index];
-                final title = "${report.category.name} - ${report.subdistrict}, ${report.city}.";
+                final title =
+                    "${report.category.name} - ${report.subdistrict}, ${report.city}.";
 
                 return ListTile(
                   key: Key(report.id.toString()),
                   leading: CircleAvatar(backgroundColor: Colors.blue),
                   title: Text(title),
-                  subtitle: Text(report.detail),
+                  subtitle: Text(
+                    report.detail,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
                   onTap: () {
                     print('clicked');
                   },
