@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Processing Data'),
+                        content: Text('Memulai proses masuk ke aplikasi...'),
                       ),
                     );
                     final loginData = LoginRequestModel(
@@ -97,6 +97,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       LoginEvent(data: loginData),
                     );
                     context.router.navigate(HomeScreenRoute());
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Sukses masuk ke aplikasi'),
+                      ),
+                    );
                   }
                 },
                 child: Text(
