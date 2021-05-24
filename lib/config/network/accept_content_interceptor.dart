@@ -6,7 +6,7 @@ final acceptContentInterceptor = InterceptorsWrapper(
     RequestInterceptorHandler handler,
   ) async {
     options.headers['Accept'] = 'application/json';
-    options.headers["X-Requested-From"] = "android";
+    options.headers['X-Requested-From'] = 'android';
 
     return handler.next(options);
   },
