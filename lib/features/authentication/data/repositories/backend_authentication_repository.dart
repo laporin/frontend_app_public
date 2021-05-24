@@ -29,7 +29,7 @@ class BackendAuthenticationRepository implements AuthenticationRepository {
   ) async {
     try {
       final data = await remoteDataSource.postRegister(registerRequestModel);
-      localDataSource.saveRegisterCredentials(data);
+      await localDataSource.saveRegisterCredentials(data);
       return Right(data);
     } on ServerException {
       return Left(ServerFailure());
@@ -42,7 +42,7 @@ class BackendAuthenticationRepository implements AuthenticationRepository {
   ) async {
     try {
       final data = await remoteDataSource.postLogin(loginRequestModel);
-      localDataSource.saveLoginCredentials(data);
+      await localDataSource.saveLoginCredentials(data);
       return Right(data);
     } on ServerException {
       return Left(ServerFailure());
