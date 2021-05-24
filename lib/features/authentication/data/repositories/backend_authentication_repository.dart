@@ -53,6 +53,7 @@ class BackendAuthenticationRepository implements AuthenticationRepository {
   Future<Either<Failure, LogoutResponseModel>> deleteLogout() async {
     try {
       final response = await remoteDataSource.deleteLogout();
+      await localDataSource.deleteAuthCredentials();
       return Right(response);
     } on ServerException {
       return Left(ServerFailure());
