@@ -35,6 +35,7 @@ import '../../features/category/domain/repositories/category_repository.dart'
     as _i14;
 import '../../features/category/domain/usecases/get_categories_usecase.dart'
     as _i17;
+import '../../features/category/presentation/bloc/category_bloc.dart' as _i25;
 import '../../features/report/data/datasources/report_remote_data_source.dart'
     as _i5;
 import '../../features/report/data/repositories/backend_report_repository.dart'
@@ -45,7 +46,7 @@ import '../../features/report/domain/usecases/get_report_usecase.dart' as _i18;
 import '../../features/report/domain/usecases/get_reports_usecase.dart' as _i19;
 import '../../features/report/presentation/bloc/report_bloc.dart' as _i23;
 import '../../services/secure_storage_service.dart' as _i8;
-import 'register_module.dart' as _i25; // ignore_for_file: unnecessary_lambdas
+import 'register_module.dart' as _i26; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -100,7 +101,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       logoutUsecase: get<_i21.LogoutAuthenticationUsecase>(),
       registerUsecase: get<_i22.RegisterAuthenticationUsecase>(),
       checkAuthUsecase: get<_i16.CheckAuthenticationUsecase>()));
+  gh.factory<_i25.CategoryBloc>(
+      () => _i25.CategoryBloc(usecase: get<_i17.GetCategoriesUsecase>()));
   return get;
 }
 
-class _$RegisterModule extends _i25.RegisterModule {}
+class _$RegisterModule extends _i26.RegisterModule {}

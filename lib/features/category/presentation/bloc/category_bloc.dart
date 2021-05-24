@@ -4,16 +4,18 @@ import 'package:equatable/equatable.dart';
 import 'package:frontend_app_public/core/usecases/usecase.dart';
 import 'package:frontend_app_public/features/category/data/models/categories_response_model.dart';
 import 'package:frontend_app_public/features/category/domain/usecases/get_categories_usecase.dart';
+import 'package:injectable/injectable.dart';
 
 part 'category_event.dart';
 part 'category_state.dart';
 
+@injectable
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   final GetCategoriesUsecase usecase;
 
   CategoryBloc({
     required this.usecase,
-  }) : super(CategoryInitial());
+  }) : super(CategoryInitialState());
 
   @override
   Stream<CategoryState> mapEventToState(
