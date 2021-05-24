@@ -91,7 +91,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(height: 10),
               TextFormField(
                 controller: _passwordController,
-                initialValue: '12345678',
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
