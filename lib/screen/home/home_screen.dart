@@ -63,20 +63,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                            'Memulai proses untuk keluar dari aplikasi.'),
-                                      ),
-                                    );
                                     BlocProvider.of<AuthenticationBloc>(context)
                                         .add(LogoutEvent());
                                     Navigator.of(context, rootNavigator: true)
                                         .pop();
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text(
-                                              'Sukses keluar dari aplikasi')),
+                                        content:
+                                            Text('Sukses keluar dari aplikasi'),
+                                      ),
                                     );
                                   },
                                   child: Text('Keluar aplikasi'),

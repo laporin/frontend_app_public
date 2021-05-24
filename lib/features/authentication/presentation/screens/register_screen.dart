@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend_app_public/features/authentication/data/models/register_request_model.dart';
+import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/routes/routes.gr.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -9,6 +12,9 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController(text: 'a');
+  final _emailController = TextEditingController(text: 'a@b.a');
+  final _passwordController = TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                initialValue: 'a',
+                controller: _nameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   contentPadding:
@@ -58,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                initialValue: 'a@a.a',
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -84,6 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 10),
               TextFormField(
+                controller: _passwordController,
                 initialValue: '12345678',
                 obscureText: true,
                 keyboardType: TextInputType.text,
@@ -104,9 +111,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    final registerData = RegisterRequestModel(
+                      name: _nameController.text,
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                    BlocProvider.of<AuthenticationBloc>(context).add(
+                      RegisterEvent(data: registerData),
+                    );
+                    context.router.navigate(HomeScreenRoute());
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Processing Data'),
+                        content: Text('Sukses mendaftar ke aplikasi'),
                       ),
                     );
                   }

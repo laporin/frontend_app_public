@@ -84,11 +84,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Memulai proses masuk ke aplikasi...'),
-                      ),
-                    );
                     final loginData = LoginRequestModel(
                       email: _emailController.text,
                       password: _passwordController.text,
