@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_request_model.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'package:frontend_app_public/routes/routes.gr.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

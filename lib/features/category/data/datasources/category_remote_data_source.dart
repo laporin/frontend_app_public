@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:frontend_app_public/core/exception/server_exception.dart';
-import 'package:frontend_app_public/env/env.dart';
+import 'package:frontend_app_public/config/env/env.dart';
 import 'package:frontend_app_public/features/category/data/models/categories_response_model.dart';
 import 'package:injectable/injectable.dart';
 

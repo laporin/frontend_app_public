@@ -1,4 +1,4 @@
-import 'package:frontend_app_public/di/injection.config.dart';
+import 'package:frontend_app_public/config/di/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 

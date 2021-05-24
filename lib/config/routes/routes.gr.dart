@@ -7,14 +7,14 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../features/authentication/presentation/screens/login_screen.dart'
+import '../../features/authentication/presentation/screens/login_screen.dart'
     as _i7;
-import '../features/authentication/presentation/screens/register_screen.dart'
+import '../../features/authentication/presentation/screens/register_screen.dart'
     as _i8;
-import '../features/report/presentation/pages/report_screen.dart' as _i6;
-import '../screen/home/home_screen.dart' as _i3;
-import '../screen/initial_screen.dart' as _i4;
-import '../screen/report/new_report_screen.dart' as _i5;
+import '../../features/report/presentation/pages/new_report_screen.dart' as _i5;
+import '../../features/report/presentation/pages/report_screen.dart' as _i6;
+import '../../screen/home_screen.dart' as _i3;
+import '../../screen/initial_screen.dart' as _i4;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])

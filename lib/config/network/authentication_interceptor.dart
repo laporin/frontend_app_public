@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:frontend_app_public/di/injection.dart';
+import 'package:frontend_app_public/config/di/injection.dart';
 import 'package:frontend_app_public/features/authentication/data/datasources/authentication_local_data_source.dart';
 
 final local = getIt<AuthenticationLocalDataSource>();

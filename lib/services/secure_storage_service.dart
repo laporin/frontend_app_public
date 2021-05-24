@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:frontend_app_public/di/injection.dart';
+import 'package:frontend_app_public/config/di/injection.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

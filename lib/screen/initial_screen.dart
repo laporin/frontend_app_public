@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend_app_public/di/injection.dart';
+import 'package:frontend_app_public/config/di/injection.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 
 class InitialScreen extends StatelessWidget {
@@ -9,7 +9,10 @@ class InitialScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(
-          create: (BuildContext context) => getIt<AuthenticationBloc>()..add(AuthenticationCheckEvent()) ,
+          create: (BuildContext context) => getIt<AuthenticationBloc>()
+            ..add(
+              AuthenticationCheckEvent(),
+            ),
         ),
       ],
       child: Container(
