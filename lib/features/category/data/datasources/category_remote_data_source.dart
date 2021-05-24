@@ -18,6 +18,7 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
 
   @override
   Future<CategoriesResponseModel> getReports() async {
+    // dio.interceptors.add(InterceptorsWrapper());
     final response = await dio.get("${Env.backendUrl}/api/categories");
     if (response.statusCode == 200) {
       return CategoriesResponseModel.fromJson(response.data);

@@ -1,3 +1,4 @@
+import 'package:frontend_app_public/features/authentication/data/models/authentication_credential_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_response_model.dart';
 import 'package:frontend_app_public/services/secure_storage_service.dart';
@@ -8,6 +9,7 @@ abstract class AuthenticationLocalDataSource {
   Future<void> saveLoginCredentials(LoginResponseModel data);
   Future<void> saveRegisterCredentials(RegisterResponseModel data);
   Future<void> deleteAuthCredentials();
+  Future<AuthenticationCredentialModel> getAuthCredentials();
 }
 
 const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
@@ -55,5 +57,16 @@ class AuthenticationLocalDataSourceImpl
       await storageService.delete(key: ACCESS_TOKEN_KEY),
       await storageService.delete(key: TOKEN_TYPE_KEY),
     ]);
+  }
+
+  @override
+  Future<AuthenticationCredentialModel> getAuthCredentials() async {
+    final accessToken = await storageService.read(key: ACCESS_TOKEN_KEY);
+    final tokenType = await storageService.read(key: TOKEN_TYPE_KEY);
+    final credential = AuthenticationCredentialModel(
+      accessToken: accessToken ?? '',
+      tokenType: tokenType ?? '',
+    );
+    return Future.value(credential);
   }
 }
