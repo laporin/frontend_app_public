@@ -14,22 +14,13 @@ class App extends StatelessWidget {
         ..add(
           AuthenticationCheckEvent(),
         ),
-      child: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        child: MaterialApp.router(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(),
+      child: MaterialApp.router(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
+        routerDelegate: appRouter.delegate(),
+        routeInformationParser: appRouter.defaultRouteParser(),
       ),
     );
   }

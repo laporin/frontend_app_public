@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'report_request_model.freezed.dart';
-part 'report_request_model.g.dart';
+part 'create_report_request_model.freezed.dart';
+part 'create_report_request_model.g.dart';
 
 @freezed
-class ReportRequestModel with _$ReportRequestModel {
-  const factory ReportRequestModel({
+class CreateReportRequestModel with _$CreateReportRequestModel {
+  const factory CreateReportRequestModel({
     required int categoryId,
     required String detail,
     required String address,
@@ -15,8 +15,8 @@ class ReportRequestModel with _$ReportRequestModel {
     required double longitude,
     required bool private,
     // required List<ReportImageModel> reportImageModels,
-  }) = _ReportRequestModel;
+  }) = _CreateReportRequestModel;
 
-  factory ReportRequestModel.fromJson(Map<String, dynamic> json) =>
-      _$ReportRequestModelFromJson(json);
+  factory CreateReportRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$CreateReportRequestModelFromJson(json);
 }

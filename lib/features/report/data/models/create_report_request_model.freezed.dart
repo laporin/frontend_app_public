@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'report_request_model.dart';
+part of 'create_report_request_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ReportRequestModel _$ReportRequestModelFromJson(Map<String, dynamic> json) {
-  return _ReportRequestModel.fromJson(json);
+CreateReportRequestModel _$CreateReportRequestModelFromJson(
+    Map<String, dynamic> json) {
+  return _CreateReportRequestModel.fromJson(json);
 }
 
 /// @nodoc
-class _$ReportRequestModelTearOff {
-  const _$ReportRequestModelTearOff();
+class _$CreateReportRequestModelTearOff {
+  const _$CreateReportRequestModelTearOff();
 
-  _ReportRequestModel call(
+  _CreateReportRequestModel call(
       {required int categoryId,
       required String detail,
       required String address,
@@ -29,7 +30,7 @@ class _$ReportRequestModelTearOff {
       required double latitude,
       required double longitude,
       required bool private}) {
-    return _ReportRequestModel(
+    return _CreateReportRequestModel(
       categoryId: categoryId,
       detail: detail,
       address: address,
@@ -41,16 +42,16 @@ class _$ReportRequestModelTearOff {
     );
   }
 
-  ReportRequestModel fromJson(Map<String, Object> json) {
-    return ReportRequestModel.fromJson(json);
+  CreateReportRequestModel fromJson(Map<String, Object> json) {
+    return CreateReportRequestModel.fromJson(json);
   }
 }
 
 /// @nodoc
-const $ReportRequestModel = _$ReportRequestModelTearOff();
+const $CreateReportRequestModel = _$CreateReportRequestModelTearOff();
 
 /// @nodoc
-mixin _$ReportRequestModel {
+mixin _$CreateReportRequestModel {
   int get categoryId => throw _privateConstructorUsedError;
   String get detail => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
@@ -62,15 +63,15 @@ mixin _$ReportRequestModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ReportRequestModelCopyWith<ReportRequestModel> get copyWith =>
+  $CreateReportRequestModelCopyWith<CreateReportRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReportRequestModelCopyWith<$Res> {
-  factory $ReportRequestModelCopyWith(
-          ReportRequestModel value, $Res Function(ReportRequestModel) then) =
-      _$ReportRequestModelCopyWithImpl<$Res>;
+abstract class $CreateReportRequestModelCopyWith<$Res> {
+  factory $CreateReportRequestModelCopyWith(CreateReportRequestModel value,
+          $Res Function(CreateReportRequestModel) then) =
+      _$CreateReportRequestModelCopyWithImpl<$Res>;
   $Res call(
       {int categoryId,
       String detail,
@@ -83,13 +84,13 @@ abstract class $ReportRequestModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReportRequestModelCopyWithImpl<$Res>
-    implements $ReportRequestModelCopyWith<$Res> {
-  _$ReportRequestModelCopyWithImpl(this._value, this._then);
+class _$CreateReportRequestModelCopyWithImpl<$Res>
+    implements $CreateReportRequestModelCopyWith<$Res> {
+  _$CreateReportRequestModelCopyWithImpl(this._value, this._then);
 
-  final ReportRequestModel _value;
+  final CreateReportRequestModel _value;
   // ignore: unused_field
-  final $Res Function(ReportRequestModel) _then;
+  final $Res Function(CreateReportRequestModel) _then;
 
   @override
   $Res call({
@@ -140,11 +141,11 @@ class _$ReportRequestModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ReportRequestModelCopyWith<$Res>
-    implements $ReportRequestModelCopyWith<$Res> {
-  factory _$ReportRequestModelCopyWith(
-          _ReportRequestModel value, $Res Function(_ReportRequestModel) then) =
-      __$ReportRequestModelCopyWithImpl<$Res>;
+abstract class _$CreateReportRequestModelCopyWith<$Res>
+    implements $CreateReportRequestModelCopyWith<$Res> {
+  factory _$CreateReportRequestModelCopyWith(_CreateReportRequestModel value,
+          $Res Function(_CreateReportRequestModel) then) =
+      __$CreateReportRequestModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {int categoryId,
@@ -158,15 +159,16 @@ abstract class _$ReportRequestModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ReportRequestModelCopyWithImpl<$Res>
-    extends _$ReportRequestModelCopyWithImpl<$Res>
-    implements _$ReportRequestModelCopyWith<$Res> {
-  __$ReportRequestModelCopyWithImpl(
-      _ReportRequestModel _value, $Res Function(_ReportRequestModel) _then)
-      : super(_value, (v) => _then(v as _ReportRequestModel));
+class __$CreateReportRequestModelCopyWithImpl<$Res>
+    extends _$CreateReportRequestModelCopyWithImpl<$Res>
+    implements _$CreateReportRequestModelCopyWith<$Res> {
+  __$CreateReportRequestModelCopyWithImpl(_CreateReportRequestModel _value,
+      $Res Function(_CreateReportRequestModel) _then)
+      : super(_value, (v) => _then(v as _CreateReportRequestModel));
 
   @override
-  _ReportRequestModel get _value => super._value as _ReportRequestModel;
+  _CreateReportRequestModel get _value =>
+      super._value as _CreateReportRequestModel;
 
   @override
   $Res call({
@@ -179,7 +181,7 @@ class __$ReportRequestModelCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? private = freezed,
   }) {
-    return _then(_ReportRequestModel(
+    return _then(_CreateReportRequestModel(
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -218,8 +220,8 @@ class __$ReportRequestModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ReportRequestModel implements _ReportRequestModel {
-  const _$_ReportRequestModel(
+class _$_CreateReportRequestModel implements _CreateReportRequestModel {
+  const _$_CreateReportRequestModel(
       {required this.categoryId,
       required this.detail,
       required this.address,
@@ -229,8 +231,8 @@ class _$_ReportRequestModel implements _ReportRequestModel {
       required this.longitude,
       required this.private});
 
-  factory _$_ReportRequestModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_ReportRequestModelFromJson(json);
+  factory _$_CreateReportRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$_$_CreateReportRequestModelFromJson(json);
 
   @override
   final int categoryId;
@@ -251,13 +253,13 @@ class _$_ReportRequestModel implements _ReportRequestModel {
 
   @override
   String toString() {
-    return 'ReportRequestModel(categoryId: $categoryId, detail: $detail, address: $address, city: $city, subdistrict: $subdistrict, latitude: $latitude, longitude: $longitude, private: $private)';
+    return 'CreateReportRequestModel(categoryId: $categoryId, detail: $detail, address: $address, city: $city, subdistrict: $subdistrict, latitude: $latitude, longitude: $longitude, private: $private)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ReportRequestModel &&
+        (other is _CreateReportRequestModel &&
             (identical(other.categoryId, categoryId) ||
                 const DeepCollectionEquality()
                     .equals(other.categoryId, categoryId)) &&
@@ -295,17 +297,18 @@ class _$_ReportRequestModel implements _ReportRequestModel {
 
   @JsonKey(ignore: true)
   @override
-  _$ReportRequestModelCopyWith<_ReportRequestModel> get copyWith =>
-      __$ReportRequestModelCopyWithImpl<_ReportRequestModel>(this, _$identity);
+  _$CreateReportRequestModelCopyWith<_CreateReportRequestModel> get copyWith =>
+      __$CreateReportRequestModelCopyWithImpl<_CreateReportRequestModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ReportRequestModelToJson(this);
+    return _$_$_CreateReportRequestModelToJson(this);
   }
 }
 
-abstract class _ReportRequestModel implements ReportRequestModel {
-  const factory _ReportRequestModel(
+abstract class _CreateReportRequestModel implements CreateReportRequestModel {
+  const factory _CreateReportRequestModel(
       {required int categoryId,
       required String detail,
       required String address,
@@ -313,10 +316,10 @@ abstract class _ReportRequestModel implements ReportRequestModel {
       required String subdistrict,
       required double latitude,
       required double longitude,
-      required bool private}) = _$_ReportRequestModel;
+      required bool private}) = _$_CreateReportRequestModel;
 
-  factory _ReportRequestModel.fromJson(Map<String, dynamic> json) =
-      _$_ReportRequestModel.fromJson;
+  factory _CreateReportRequestModel.fromJson(Map<String, dynamic> json) =
+      _$_CreateReportRequestModel.fromJson;
 
   @override
   int get categoryId => throw _privateConstructorUsedError;
@@ -336,6 +339,6 @@ abstract class _ReportRequestModel implements ReportRequestModel {
   bool get private => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ReportRequestModelCopyWith<_ReportRequestModel> get copyWith =>
+  _$CreateReportRequestModelCopyWith<_CreateReportRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -18,10 +18,10 @@ class GetReportEvent extends ReportEvent {
   List<Object?> get props => [id];
 }
 
-class PostReportEvent extends ReportEvent {
-  final ReportRequestModel data;
+class CreateReportEvent extends ReportEvent {
+  final CreateReportRequestModel data;
 
-  PostReportEvent({required this.data});
+  CreateReportEvent({required this.data});
 
   @override
   List<Object?> get props => [data];

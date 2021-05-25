@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'report_request_model.dart';
+part of 'create_report_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ReportRequestModel _$_$_ReportRequestModelFromJson(
+_$_CreateReportRequestModel _$_$_CreateReportRequestModelFromJson(
     Map<String, dynamic> json) {
-  return _$_ReportRequestModel(
+  return _$_CreateReportRequestModel(
     categoryId: json['category_id'] as int,
     detail: json['detail'] as String,
     address: json['address'] as String,
@@ -20,8 +20,8 @@ _$_ReportRequestModel _$_$_ReportRequestModelFromJson(
   );
 }
 
-Map<String, dynamic> _$_$_ReportRequestModelToJson(
-        _$_ReportRequestModel instance) =>
+Map<String, dynamic> _$_$_CreateReportRequestModelToJson(
+        _$_CreateReportRequestModel instance) =>
     <String, dynamic>{
       'category_id': instance.categoryId,
       'detail': instance.detail,

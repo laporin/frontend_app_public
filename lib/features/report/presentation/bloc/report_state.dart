@@ -40,3 +40,8 @@ class ReportErrorState extends ReportState {
   @override
   List<Object?> get props => [message];
 }
+
+class CreatedReportState extends ReportState {
+  @override
+  List<Object?> get props => [];
+}
