@@ -28,7 +28,7 @@
 
 ## How to run
 
-1. Clone this repo.
-2. Install dependencies `flutter put get`.
-3. Generate code `flutter pub run build_runner build --delete-conflicting-outputs`.
+1. Clone this repo `git clone git@github.com:laporin/frontend_app_public.git`.
+2. Install the dependencies `flutter put get`.
+3. Run the code generation `flutter pub run build_runner build --delete-conflicting-outputs`.
 4. Run flutter `flutter run`.
