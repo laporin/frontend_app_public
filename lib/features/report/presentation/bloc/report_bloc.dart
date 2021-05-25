@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:frontend_app_public/core/usecases/usecase.dart';
+import 'package:frontend_app_public/features/report/data/models/report_request_model.dart';
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/get_report_usecase.dart';

@@ -11,10 +11,12 @@ class NewReportScreen extends StatefulWidget {
 class _NewReportScreenState extends State<NewReportScreen> {
   final _formKey = GlobalKey<FormState>();
   final _detail = TextEditingController(text: 'some detail text');
-  final _categoryId = 1;
-  final _city = TextEditingController(text: '');
-  final _subdistrict = TextEditingController(text: '');
-  final _address = TextEditingController(text: '');
+  var _categoryId = 1;
+  final _city = TextEditingController(text: 'magelang');
+  final _subdistrict = TextEditingController(text: 'ngluwar');
+  final _address =
+      TextEditingController(text: 'rt 1 rw 2 jalan raya ditengah sawah');
+  var _visibility = false;
 
   String dropdownValue = 'Kemacetan';
 
@@ -47,6 +49,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    controller: _detail,
                     maxLines: 4,
                     keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
@@ -97,10 +100,16 @@ class _NewReportScreenState extends State<NewReportScreen> {
                           //   height: 2,
                           //   color: Colors.deepPurpleAccent,
                           // ),
-                          onChanged: (String? newValue) {
+                          onChanged: (String? newCategoryName) {
+                            final selectedCategory = categories
+                                .where((element) =>
+                                    element.name == newCategoryName)
+                                .first;
                             setState(() {
-                              dropdownValue = newValue!;
+                              dropdownValue = newCategoryName!;
+                              _categoryId = selectedCategory.id;
                             });
+                            print(_categoryId);
                           },
                           items: categoriesName.map((String value) {
                             return DropdownMenuItem<String>(
@@ -118,12 +127,127 @@ class _NewReportScreenState extends State<NewReportScreen> {
                   ),
                   SizedBox(height: 15),
                   Text(
-                    'Lokasi',
+                    'Kota',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: Colors.grey.shade700,
                     ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _city,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      hintText: 'Magelang',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Mohon tulis kota';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    'Kota',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _subdistrict,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      hintText: 'Ngluwar',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Mohon tulis kecamatan';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    'Alamat Lengkap',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _address,
+                    maxLines: 3,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      hintText: 'RT RW / Nomor Jalan',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Mohon tulis alamat lengkap';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    'Koordinat',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '10, 10',
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    'Apakah Anda ingin laporan ini dilihat oleh umum?',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    children: <Widget>[
+                      RadioListTile<bool>(
+                        title: const Text('Ya'),
+                        value: true,
+                        groupValue: _visibility,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _visibility = value ?? false;
+                          });
+                        },
+                      ),
+                      RadioListTile<bool>(
+                        title: const Text('Tidak'),
+                        value: false,
+                        groupValue: _visibility,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _visibility = value ?? false;
+                          });
+                        },
+                      ),
+                    ],
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(

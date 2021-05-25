@@ -4,7 +4,6 @@ import 'package:frontend_app_public/core/failure/failure.dart';
 import 'package:frontend_app_public/core/failure/server_failure.dart';
 import 'package:frontend_app_public/features/authentication/data/datasources/authentication_local_data_source.dart';
 import 'package:frontend_app_public/features/authentication/data/datasources/authentication_remote_data_source.dart';
-import 'package:frontend_app_public/features/authentication/data/models/authentication_credential_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_request_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/logout_response_model.dart';
