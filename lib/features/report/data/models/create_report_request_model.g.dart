@@ -17,6 +17,7 @@ _$_CreateReportRequestModel _$_$_CreateReportRequestModelFromJson(
     latitude: (json['latitude'] as num).toDouble(),
     longitude: (json['longitude'] as num).toDouble(),
     private: json['private'] as bool,
+    images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
   );
 }
 
@@ -31,4 +32,5 @@ Map<String, dynamic> _$_$_CreateReportRequestModelToJson(
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'private': instance.private,
+      'images': instance.images,
     };

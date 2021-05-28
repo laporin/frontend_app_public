@@ -27,7 +27,6 @@ class AuthenticationLocalDataSourceImpl
   @override
   Future<bool> isUserLoggedIn() async {
     final accessToken = await storageService.read(key: ACCESS_TOKEN_KEY);
-    print("The access token is: $accessToken");
     return Future.value(accessToken != null);
   }
 

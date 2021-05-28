@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_report_request_model.freezed.dart';
@@ -14,7 +16,7 @@ class CreateReportRequestModel with _$CreateReportRequestModel {
     required double latitude,
     required double longitude,
     required bool private,
-    // required List<ReportImageModel> reportImageModels,
+    required List<String> images,
   }) = _CreateReportRequestModel;
 
   factory CreateReportRequestModel.fromJson(Map<String, dynamic> json) =>

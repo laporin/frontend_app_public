@@ -31,16 +31,15 @@ class _NewReportScreenState extends State<NewReportScreen> {
 
   String dropdownValue = 'Kemacetan';
 
-  File? _image;
   List<File> _files = [];
   final picker = ImagePicker();
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    final pickedImage = await picker.getImage(source: ImageSource.camera);
 
     setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
+      if (pickedImage != null) {
+        _files.add(File(pickedImage.path));
       } else {
         print('No image selected.');
       }
@@ -48,8 +47,6 @@ class _NewReportScreenState extends State<NewReportScreen> {
   }
 
   Future getImageFromGallery() async {
-    // final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['jpg', 'jpeg', 'png'],
@@ -111,72 +108,74 @@ class _NewReportScreenState extends State<NewReportScreen> {
                         color: Colors.grey.shade700,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 3 / 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                      ),
-                      itemCount: _files.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        final file = _files[index];
+                    if (_files.length > 0) SizedBox(height: 10),
+                    if (_files.length > 0)
+                      GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 3 / 2,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20,
+                        ),
+                        itemCount: _files.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          final file = _files[index];
 
-                        return InkWell(
-                          child: Container(
-                            height: 120,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              color: Colors.yellow,
-                              border: Border.all(color: Colors.blueAccent),
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                image: FileImage(file),
-                                fit: BoxFit.cover,
+                          return InkWell(
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                color: Colors.blue.shade400,
+                                border: Border.all(color: Colors.blueAccent),
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                  image: FileImage(file),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          onTap: () async {
-                            final choice = await showDialog<bool>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text('Hapus gambar'),
-                                content: const Text(
-                                    'Apakah Anda yakin untuk menghapus gambar ini?'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, false),
-                                    child: const Text('Tidak'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, true),
-                                    child: const Text('Ya'),
-                                  ),
-                                ],
-                              ),
-                            );
+                            onTap: () async {
+                              final choice = await showDialog<bool>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Hapus gambar'),
+                                  content: const Text(
+                                      'Apakah Anda yakin untuk menghapus gambar ini?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, false),
+                                      child: const Text('Tidak'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, true),
+                                      child: const Text('Ya'),
+                                    ),
+                                  ],
+                                ),
+                              );
 
-                            if (choice == true) {
-                              setState(() {
-                                _files.removeAt(index);
-                              });
-                            }
-                          },
-                        );
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      '*Klik pada tiap gambar untuk menghapusnya',
-                      style: TextStyle(
-                        color: Colors.grey.shade700,
-                        fontStyle: FontStyle.italic,
+                              if (choice == true) {
+                                setState(() {
+                                  _files.removeAt(index);
+                                });
+                              }
+                            },
+                          );
+                        },
                       ),
-                    ),
+                    if (_files.length > 0) SizedBox(height: 10),
+                    if (_files.length > 0)
+                      Text(
+                        '*Klik pada tiap gambar untuk menghapusnya',
+                        style: TextStyle(
+                          color: Colors.grey.shade700,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
                     SizedBox(height: 10),
                     Row(
                       children: [
@@ -410,6 +409,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                             latitude: 10.10,
                             longitude: 10.10,
                             private: _visibility,
+                            images: _files.map((e) => e.path).toList(),
                           );
                           BlocProvider.of<ReportBloc>(context).add(
                             CreateReportEvent(data: reportData),

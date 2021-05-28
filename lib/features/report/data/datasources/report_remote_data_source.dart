@@ -53,6 +53,14 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
       'longitude': 10.10,
       'private': body.private,
     });
+
+    if (body.images.length > 0) {
+      final images = [];
+      body.images.forEach((element) {
+        images.add(MultipartFile.fromFileSync(element));
+      });
+    }
+
     final response = await dio.post(
       "${Env.backendUrl}/api/reports",
       data: reportData,

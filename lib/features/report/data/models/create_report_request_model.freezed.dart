@@ -29,7 +29,8 @@ class _$CreateReportRequestModelTearOff {
       required String subdistrict,
       required double latitude,
       required double longitude,
-      required bool private}) {
+      required bool private,
+      required List<String> images}) {
     return _CreateReportRequestModel(
       categoryId: categoryId,
       detail: detail,
@@ -39,6 +40,7 @@ class _$CreateReportRequestModelTearOff {
       latitude: latitude,
       longitude: longitude,
       private: private,
+      images: images,
     );
   }
 
@@ -60,6 +62,7 @@ mixin _$CreateReportRequestModel {
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
   bool get private => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -80,7 +83,8 @@ abstract class $CreateReportRequestModelCopyWith<$Res> {
       String subdistrict,
       double latitude,
       double longitude,
-      bool private});
+      bool private,
+      List<String> images});
 }
 
 /// @nodoc
@@ -102,6 +106,7 @@ class _$CreateReportRequestModelCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? private = freezed,
+    Object? images = freezed,
   }) {
     return _then(_value.copyWith(
       categoryId: categoryId == freezed
@@ -136,6 +141,10 @@ class _$CreateReportRequestModelCopyWithImpl<$Res>
           ? _value.private
           : private // ignore: cast_nullable_to_non_nullable
               as bool,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -155,7 +164,8 @@ abstract class _$CreateReportRequestModelCopyWith<$Res>
       String subdistrict,
       double latitude,
       double longitude,
-      bool private});
+      bool private,
+      List<String> images});
 }
 
 /// @nodoc
@@ -180,6 +190,7 @@ class __$CreateReportRequestModelCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? private = freezed,
+    Object? images = freezed,
   }) {
     return _then(_CreateReportRequestModel(
       categoryId: categoryId == freezed
@@ -214,6 +225,10 @@ class __$CreateReportRequestModelCopyWithImpl<$Res>
           ? _value.private
           : private // ignore: cast_nullable_to_non_nullable
               as bool,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -229,7 +244,8 @@ class _$_CreateReportRequestModel implements _CreateReportRequestModel {
       required this.subdistrict,
       required this.latitude,
       required this.longitude,
-      required this.private});
+      required this.private,
+      required this.images});
 
   factory _$_CreateReportRequestModel.fromJson(Map<String, dynamic> json) =>
       _$_$_CreateReportRequestModelFromJson(json);
@@ -250,10 +266,12 @@ class _$_CreateReportRequestModel implements _CreateReportRequestModel {
   final double longitude;
   @override
   final bool private;
+  @override
+  final List<String> images;
 
   @override
   String toString() {
-    return 'CreateReportRequestModel(categoryId: $categoryId, detail: $detail, address: $address, city: $city, subdistrict: $subdistrict, latitude: $latitude, longitude: $longitude, private: $private)';
+    return 'CreateReportRequestModel(categoryId: $categoryId, detail: $detail, address: $address, city: $city, subdistrict: $subdistrict, latitude: $latitude, longitude: $longitude, private: $private, images: $images)';
   }
 
   @override
@@ -280,7 +298,10 @@ class _$_CreateReportRequestModel implements _CreateReportRequestModel {
                 const DeepCollectionEquality()
                     .equals(other.longitude, longitude)) &&
             (identical(other.private, private) ||
-                const DeepCollectionEquality().equals(other.private, private)));
+                const DeepCollectionEquality()
+                    .equals(other.private, private)) &&
+            (identical(other.images, images) ||
+                const DeepCollectionEquality().equals(other.images, images)));
   }
 
   @override
@@ -293,7 +314,8 @@ class _$_CreateReportRequestModel implements _CreateReportRequestModel {
       const DeepCollectionEquality().hash(subdistrict) ^
       const DeepCollectionEquality().hash(latitude) ^
       const DeepCollectionEquality().hash(longitude) ^
-      const DeepCollectionEquality().hash(private);
+      const DeepCollectionEquality().hash(private) ^
+      const DeepCollectionEquality().hash(images);
 
   @JsonKey(ignore: true)
   @override
@@ -316,7 +338,8 @@ abstract class _CreateReportRequestModel implements CreateReportRequestModel {
       required String subdistrict,
       required double latitude,
       required double longitude,
-      required bool private}) = _$_CreateReportRequestModel;
+      required bool private,
+      required List<String> images}) = _$_CreateReportRequestModel;
 
   factory _CreateReportRequestModel.fromJson(Map<String, dynamic> json) =
       _$_CreateReportRequestModel.fromJson;
@@ -337,6 +360,8 @@ abstract class _CreateReportRequestModel implements CreateReportRequestModel {
   double get longitude => throw _privateConstructorUsedError;
   @override
   bool get private => throw _privateConstructorUsedError;
+  @override
+  List<String> get images => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CreateReportRequestModelCopyWith<_CreateReportRequestModel> get copyWith =>
