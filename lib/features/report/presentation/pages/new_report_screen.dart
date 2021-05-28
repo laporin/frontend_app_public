@@ -23,7 +23,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
   final _address =
       TextEditingController(text: 'rt 1 rw 2 jalan raya ditengah sawah');
   var _visibility = false;
-  late Position position;
+  Position? position;
 
   String dropdownValue = 'Kemacetan';
 
@@ -228,16 +228,9 @@ class _NewReportScreenState extends State<NewReportScreen> {
                         color: Colors.grey.shade700,
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final apa = await determinePosition();
-                        print(apa);
-                      },
-                      child: Text('aaa'),
-                    ),
                     SizedBox(height: 10),
                     Text(
-                      "${position.latitude} ${position.longitude}",
+                      "${position?.latitude ?? 0}, ${position?.longitude ?? 0}",
                     ),
                     SizedBox(height: 15),
                     Text(
