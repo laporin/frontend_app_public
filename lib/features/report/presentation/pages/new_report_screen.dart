@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:frontend_app_public/features/report/data/models/create_report_re
 import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
 import 'package:frontend_app_public/services/geolocation_service.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:image_picker/image_picker.dart';
 
 class NewReportScreen extends StatefulWidget {
   @override
@@ -26,6 +29,21 @@ class _NewReportScreenState extends State<NewReportScreen> {
   Position? position;
 
   String dropdownValue = 'Kemacetan';
+
+  File? _image;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -65,6 +83,21 @@ class _NewReportScreenState extends State<NewReportScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      'Gambar',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey.shade700,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ElevatedButton.icon(
+                      icon: Icon(Icons.add_a_photo),
+                      onPressed: getImage,
+                      label: Text('Ambil gambar'),
+                    ),
+                    SizedBox(height: 15),
                     Text(
                       'Deskripsi Laporan',
                       style: TextStyle(
