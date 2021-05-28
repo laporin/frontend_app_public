@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
@@ -31,6 +32,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
   String dropdownValue = 'Kemacetan';
 
   File? _image;
+  List<File> _files = [];
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -46,15 +48,22 @@ class _NewReportScreenState extends State<NewReportScreen> {
   }
 
   Future getImageFromGallery() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    // final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png'],
+      allowMultiple: true,
+    );
+
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path ?? '')).toList();
+      setState(() {
+        _files.addAll(files);
+      });
+    } else {
+      print('No image selected.');
+    }
   }
 
   @override
@@ -66,7 +75,6 @@ class _NewReportScreenState extends State<NewReportScreen> {
   }
 
   Future _getThingsOnStartup() async {
-    // await Geolocator.requestPermission();
     final currentPosition = await determinePosition();
     setState(() {
       position = currentPosition;
@@ -104,35 +112,72 @@ class _NewReportScreenState extends State<NewReportScreen> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        border: Border.all(color: Colors.blueAccent),
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                          image:
-                              NetworkImage('https://placekitten.com/200/300'),
-                          fit: BoxFit.cover,
-                        ),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        childAspectRatio: 3 / 2,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
                       ),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          icon: Icon(Icons.close),
-                          color: Colors.red,
-                          onPressed: () {
-                            print('hapus gambar');
+                      itemCount: _files.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        final file = _files[index];
+
+                        return InkWell(
+                          child: Container(
+                            height: 120,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              color: Colors.yellow,
+                              border: Border.all(color: Colors.blueAccent),
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                image: FileImage(file),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          onTap: () async {
+                            final choice = await showDialog<bool>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Hapus gambar'),
+                                content: const Text(
+                                    'Apakah Anda yakin untuk menghapus gambar ini?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, false),
+                                    child: const Text('Tidak'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, true),
+                                    child: const Text('Ya'),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            if (choice == true) {
+                              setState(() {
+                                _files.removeAt(index);
+                              });
+                            }
                           },
-                        ),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '*Klik pada tiap gambar untuk menghapusnya',
+                      style: TextStyle(
+                        color: Colors.grey.shade700,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Center(
-                      child: _image == null
-                          ? Text('No image selected.')
-                          : Image.file(_image!),
-                    ),
+                    SizedBox(height: 10),
                     Row(
                       children: [
                         ElevatedButton.icon(
