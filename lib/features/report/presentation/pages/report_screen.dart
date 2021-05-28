@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
@@ -34,35 +35,39 @@ class ReportScreen extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            flex: 3,
-                            child: Container(
-                              height: 150,
-                              color: Colors.blue,
-                            ),
+                      if (report.images.length > 0)
+                        CarouselSlider(
+                          options: CarouselOptions(
+                            height: 200,
+                            enlargeCenterPage: true,
+                            // enableInfiniteScroll: false,
                           ),
-                          Flexible(
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  color: Colors.green,
-                                ),
-                                Container(
-                                  height: 50,
-                                  color: Colors.red,
-                                ),
-                                Container(
-                                  height: 50,
-                                  color: Colors.yellow,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                          items: report.images.map((image) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(8),
+                                    // image: DecorationImage(
+                                    //   image: NetworkImage(image.url),
+                                    // ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'text ${image.url}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList(),
+                        ),
+                      // Text(report.images.first.url),
+
                       SizedBox(height: 15),
                       Text(
                         'Deskripsi Laporan',
