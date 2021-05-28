@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
+import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/features/category/presentation/bloc/category_bloc.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_request_model.dart';
 import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
@@ -27,18 +29,18 @@ class _NewReportScreenState extends State<NewReportScreen> {
     return BlocProvider<CategoryBloc>(
       create: (BuildContext context) =>
           getIt<CategoryBloc>()..add(GetCategoriesEvent()),
-      child: BlocProvider(
-        create: (context) => getIt<ReportBloc>(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Buat Laporan Baru',
-              style: TextStyle(fontWeight: FontWeight.w700),
-            ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Buat Laporan Baru',
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
-          body: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.all(16),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(16),
+            child: BlocProvider(
+              create: (context) => getIt<ReportBloc>(),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -114,7 +116,6 @@ class _NewReportScreenState extends State<NewReportScreen> {
                                 dropdownValue = newCategoryName!;
                                 _categoryId = selectedCategory.id;
                               });
-                              print(_categoryId);
                             },
                             items: categoriesName.map((String value) {
                               return DropdownMenuItem<String>(
@@ -233,6 +234,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                     Column(
                       children: <Widget>[
                         RadioListTile<bool>(
+                          contentPadding: EdgeInsets.all(0),
                           title: const Text('Ya'),
                           value: true,
                           groupValue: _visibility,
@@ -243,6 +245,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                           },
                         ),
                         RadioListTile<bool>(
+                          contentPadding: EdgeInsets.all(0),
                           title: const Text('Tidak'),
                           value: false,
                           groupValue: _visibility,
@@ -271,6 +274,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                           BlocProvider.of<ReportBloc>(context).add(
                             CreateReportEvent(data: reportData),
                           );
+                          AutoRouter.of(context).navigate(HomeScreenRoute());
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Sukses membuat laporan'),

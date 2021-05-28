@@ -45,8 +45,8 @@ class ReportRemoteDataSourceImpl extends ReportRemoteDataSource {
   ) async {
     var reportData = FormData.fromMap({
       'detail': body.detail,
-      'address': body.detail,
-      'categoryId': body.categoryId,
+      'address': body.address,
+      'category_id': body.categoryId,
       'city': body.city,
       'subdistrict': body.subdistrict,
       'latitude': 10.10,

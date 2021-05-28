@@ -40,6 +40,7 @@ class BackendReportRepository extends ReportRepository {
   @override
   Future<Either<Failure, CreateReportResponseModel>> postReport(CreateReportRequestModel body) async {
     try {
+      print(body);
       final response = await remoteDataSource.postReport(body);
       return Right(response);
     } on ServerException {

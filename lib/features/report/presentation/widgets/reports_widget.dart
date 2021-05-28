@@ -40,7 +40,6 @@ class ReportsWidget extends StatelessWidget {
                   ),
                   onTap: () {
                     context.router.navigate(ReportScreenRoute(id: report.id));
-                    print('clicked');
                   },
                 );
               },
