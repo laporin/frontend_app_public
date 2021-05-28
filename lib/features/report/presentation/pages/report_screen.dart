@@ -119,6 +119,15 @@ class ReportScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(report.address),
                       SizedBox(height: 15),
+                      Text(
+                        'Peta',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                      SizedBox(height: 10),
                     ],
                   );
                 } else if (state is ReportLoadingState) {
