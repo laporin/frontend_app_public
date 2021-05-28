@@ -6,6 +6,8 @@ import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/features/category/presentation/bloc/category_bloc.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_request_model.dart';
 import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
+import 'package:frontend_app_public/services/geolocation_service.dart';
+import 'package:geolocator/geolocator.dart';
 
 class NewReportScreen extends StatefulWidget {
   @override
@@ -21,8 +23,25 @@ class _NewReportScreenState extends State<NewReportScreen> {
   final _address =
       TextEditingController(text: 'rt 1 rw 2 jalan raya ditengah sawah');
   var _visibility = false;
+  late Position position;
 
   String dropdownValue = 'Kemacetan';
+
+  @override
+  void initState() {
+    _getThingsOnStartup().then((value) {
+      print('Async done');
+    });
+    super.initState();
+  }
+
+  Future _getThingsOnStartup() async {
+    await Geolocator.requestPermission();
+    final currentPosition = await determinePosition();
+    setState(() {
+      position = currentPosition;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,17 +115,9 @@ class _NewReportScreenState extends State<NewReportScreen> {
                           final categories = state.categories.data;
                           final categoriesName =
                               categories.map((e) => e.name).toList();
-                          // print(categoriesName);
                           return DropdownButton<String>(
                             value: dropdownValue,
                             icon: const Icon(Icons.arrow_downward),
-                            // iconSize: 24,
-                            // elevation: 16,
-                            // style: const TextStyle(color: Colors.deepPurple),
-                            // underline: Container(
-                            //   height: 2,
-                            //   color: Colors.deepPurpleAccent,
-                            // ),
                             onChanged: (String? newCategoryName) {
                               final selectedCategory = categories
                                   .where((element) =>
@@ -217,9 +228,16 @@ class _NewReportScreenState extends State<NewReportScreen> {
                         color: Colors.grey.shade700,
                       ),
                     ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final apa = await determinePosition();
+                        print(apa);
+                      },
+                      child: Text('aaa'),
+                    ),
                     SizedBox(height: 10),
                     Text(
-                      '10, 10',
+                      "${position.latitude} ${position.longitude}",
                     ),
                     SizedBox(height: 15),
                     Text(
