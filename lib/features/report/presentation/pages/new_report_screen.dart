@@ -45,6 +45,18 @@ class _NewReportScreenState extends State<NewReportScreen> {
     });
   }
 
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
   void initState() {
     _getThingsOnStartup().then((value) {
@@ -54,7 +66,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
   }
 
   Future _getThingsOnStartup() async {
-    await Geolocator.requestPermission();
+    // await Geolocator.requestPermission();
     final currentPosition = await determinePosition();
     setState(() {
       position = currentPosition;
@@ -92,10 +104,49 @@ class _NewReportScreenState extends State<NewReportScreen> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    ElevatedButton.icon(
-                      icon: Icon(Icons.add_a_photo),
-                      onPressed: getImage,
-                      label: Text('Ambil gambar'),
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        border: Border.all(color: Colors.blueAccent),
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                          image:
+                              NetworkImage('https://placekitten.com/200/300'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          icon: Icon(Icons.close),
+                          color: Colors.red,
+                          onPressed: () {
+                            print('hapus gambar');
+                          },
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: _image == null
+                          ? Text('No image selected.')
+                          : Image.file(_image!),
+                    ),
+                    Row(
+                      children: [
+                        ElevatedButton.icon(
+                          icon: Icon(Icons.photo_library_sharp),
+                          onPressed: getImageFromGallery,
+                          label: Text('Pilih dari galeri'),
+                        ),
+                        SizedBox(width: 8),
+                        ElevatedButton.icon(
+                          icon: Icon(Icons.add_a_photo),
+                          onPressed: getImage,
+                          label: Text('Ambil gambar'),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 15),
                     Text(
