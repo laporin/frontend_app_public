@@ -22,6 +22,7 @@ class ReportsWidget extends StatelessWidget {
             final entries = state.reportsResponseModel.data;
 
             return ListView.builder(
+              physics: BouncingScrollPhysics(),
               padding: const EdgeInsets.all(8),
               itemCount: entries.length,
               itemBuilder: (BuildContext context, int index) {
