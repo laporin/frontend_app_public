@@ -17,7 +17,8 @@ class _ReportsWidgetState extends State<ReportsWidget> {
 
   void _onRefresh() async {
     // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
+    BlocProvider.of<ReportBloc>(context)..add(GetReportsEvent());
+    // await Future.delayed(Duration(milliseconds: 1000));
     // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
   }
@@ -25,7 +26,6 @@ class _ReportsWidgetState extends State<ReportsWidget> {
   void _onLoading() async {
     // monitor network fetch
     // await Future.delayed(Duration(milliseconds: 1000));
-    BlocProvider.of<ReportBloc>(context)..add(GetReportsEvent());
 
     // if failed,use loadFailed(),if no data return,use LoadNodata()
     // items.add((items.length + 1).toString());
@@ -65,6 +65,9 @@ class _ReportsWidgetState extends State<ReportsWidget> {
       child: BlocProvider(
         create: (context) => getIt<ReportBloc>()..add(GetReportsEvent()),
         child: BlocBuilder<ReportBloc, ReportState>(
+          buildWhen: (previousState, state) {
+            return previousState != state;
+          },
           builder: (context, state) {
             if (state is ReportInitialState) {
               return Text('init.');

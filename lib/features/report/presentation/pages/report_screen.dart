@@ -40,7 +40,7 @@ class ReportScreen extends StatelessWidget {
                           options: CarouselOptions(
                             height: 200,
                             enlargeCenterPage: true,
-                            // enableInfiniteScroll: false,
+                            enableInfiniteScroll: false,
                           ),
                           items: report.images.map((image) {
                             return Builder(
@@ -51,16 +51,17 @@ class ReportScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: Colors.blue,
                                     borderRadius: BorderRadius.circular(8),
-                                    // image: DecorationImage(
-                                    //   image: NetworkImage(image.url),
-                                    // ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'text ${image.url}',
-                                      style: TextStyle(fontSize: 16),
+                                    image: DecorationImage(
+                                      image: NetworkImage(image.url),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
+                                  // child: Center(
+                                  //   child: Text(
+                                  //     'text ${image.url}',
+                                  //     style: TextStyle(fontSize: 16),
+                                  //   ),
+                                  // ),
                                 );
                               },
                             );
