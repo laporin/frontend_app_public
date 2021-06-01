@@ -33,3 +33,19 @@
 2. Install the dependencies `flutter put get`.
 3. Run the code generation `flutter pub run build_runner build --delete-conflicting-outputs`.
 4. Run flutter `flutter run`.
+
+## Build commands
+
+Just build
+
+```
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+Build and watch
+
+```
+flutter pub run build_runner watch --delete-conflicting-outputs
+```
+
+## Enjoy
