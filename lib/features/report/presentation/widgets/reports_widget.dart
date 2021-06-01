@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
-import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
 import 'package:frontend_app_public/config/routes/routes.gr.dart';
+import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ReportsWidget extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
 import 'package:frontend_app_public/features/report/data/models/report_data_model.dart';
-import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
+import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
 
 class ReportScreen extends StatelessWidget {
   final int id;

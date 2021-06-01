@@ -26,7 +26,7 @@ import '../../features/authentication/domain/usecases/logout_authentication_usec
 import '../../features/authentication/domain/usecases/register_authentication_usecase.dart'
     as _i24;
 import '../../features/authentication/presentation/bloc/authentication_bloc.dart'
-    as _i26;
+    as _i27;
 import '../../features/category/data/datasources/category_remote_data_source.dart'
     as _i13;
 import '../../features/category/data/repositories/backend_category_repository.dart'
@@ -35,7 +35,7 @@ import '../../features/category/domain/repositories/category_repository.dart'
     as _i14;
 import '../../features/category/domain/usecases/get_categories_usecase.dart'
     as _i18;
-import '../../features/category/presentation/bloc/category_bloc.dart' as _i27;
+import '../../features/category/presentation/bloc/category_bloc.dart' as _i28;
 import '../../features/report/data/datasources/report_remote_data_source.dart'
     as _i5;
 import '../../features/report/data/repositories/backend_report_repository.dart'
@@ -47,9 +47,12 @@ import '../../features/report/domain/usecases/get_reports_usecase.dart' as _i20;
 import '../../features/report/domain/usecases/post_report_similarity_usercase.dart'
     as _i23;
 import '../../features/report/domain/usecases/post_report_usecase.dart' as _i17;
-import '../../features/report/presentation/bloc/report_bloc.dart' as _i25;
+import '../../features/report/presentation/report_bloc/report_bloc.dart'
+    as _i25;
+import '../../features/report/presentation/similarity_report_bloc/similarity_report_bloc_bloc.dart'
+    as _i26;
 import '../../services/secure_storage_service.dart' as _i8;
-import 'register_module.dart' as _i28; // ignore_for_file: unnecessary_lambdas
+import 'register_module.dart' as _i29; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -104,15 +107,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i25.ReportBloc>(() => _i25.ReportBloc(
       reportsUsecase: get<_i20.GetReportsUsecase>(),
       reportUsecase: get<_i19.GetReportUsecase>(),
+      reportSimilarityUsecase: get<_i23.PostReportSimilarityUsecase>(),
       createReportUsecase: get<_i17.CreateReportUsecase>()));
-  gh.factory<_i26.AuthenticationBloc>(() => _i26.AuthenticationBloc(
+  gh.factory<_i26.SimilarityReportBlocBloc>(() =>
+      _i26.SimilarityReportBlocBloc(get<_i23.PostReportSimilarityUsecase>()));
+  gh.factory<_i27.AuthenticationBloc>(() => _i27.AuthenticationBloc(
       loginUsecase: get<_i21.LoginAuthenticationUsecase>(),
       logoutUsecase: get<_i22.LogoutAuthenticationUsecase>(),
       registerUsecase: get<_i24.RegisterAuthenticationUsecase>(),
       checkAuthUsecase: get<_i16.CheckAuthenticationUsecase>()));
-  gh.factory<_i27.CategoryBloc>(
-      () => _i27.CategoryBloc(usecase: get<_i18.GetCategoriesUsecase>()));
+  gh.factory<_i28.CategoryBloc>(
+      () => _i28.CategoryBloc(usecase: get<_i18.GetCategoriesUsecase>()));
   return get;
 }
 
-class _$RegisterModule extends _i28.RegisterModule {}
+class _$RegisterModule extends _i29.RegisterModule {}

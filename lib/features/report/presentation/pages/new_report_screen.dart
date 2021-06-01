@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:file_picker/file_picker.dart';
@@ -8,7 +9,8 @@ import 'package:frontend_app_public/config/di/injection.dart';
 import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/features/category/presentation/bloc/category_bloc.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_request_model.dart';
-import 'package:frontend_app_public/features/report/presentation/bloc/report_bloc.dart';
+import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
+import 'package:frontend_app_public/features/report/presentation/similarity_report_bloc/similarity_report_bloc_bloc.dart';
 import 'package:frontend_app_public/services/geolocation_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -33,6 +35,8 @@ class _NewReportScreenState extends State<NewReportScreen> {
 
   List<File> _files = [];
   final picker = ImagePicker();
+  final _focusNode = FocusNode();
+  bool? _showSimilarity;
 
   Future getImage() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
@@ -68,7 +72,29 @@ class _NewReportScreenState extends State<NewReportScreen> {
     _getThingsOnStartup().then((value) {
       print('Async done');
     });
+
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus == false) {
+        // print('check similarity');
+        setState(() {
+          _showSimilarity = true;
+        });
+        // tidak terdeteksi oleh bloc builder
+        // BlocProvider.of<ReportBloc>(context)
+        //   ..add(
+        //     PostReportSimilarityEvent(detail: _detail.text),
+        //   );
+      }
+    });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    _focusNode.dispose();
+    super.dispose();
   }
 
   Future _getThingsOnStartup() async {
@@ -204,6 +230,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                     SizedBox(height: 10),
                     TextFormField(
                       controller: _detail,
+                      focusNode: _focusNode,
                       maxLines: 4,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
@@ -218,6 +245,80 @@ class _NewReportScreenState extends State<NewReportScreen> {
                         }
                         return null;
                       },
+                    ),
+                    SizedBox(height: 15),
+                    ElevatedButton.icon(
+                      icon: Icon(Icons.file_present),
+                      onPressed: () {
+                        BlocProvider.of<SimilarityReportBlocBloc>(context)
+                          ..add(
+                            SimilarityReportBlocEvent.postSimilarity(
+                              _detail.text,
+                            ),
+                          );
+                      },
+                      label: Text('Cek kesamaan dengan laporan sebelumnya'),
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      'Laporan yang serupa',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey.shade700,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    BlocBuilder<SimilarityReportBlocBloc,
+                        SimilarityReportBlocState>(
+                      builder: (context, state) {
+                        return state.map(
+                          initial: (state) {
+                            return SizedBox.shrink();
+                          },
+                          loading: (state) {
+                            return Text('loading');
+                          },
+                          error: (state) {
+                            return Text('error');
+                          },
+                          loaded: (state) {
+                            final entries = state.data.data;
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              itemCount: entries.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final report = entries[index];
+                                final title =
+                                    "${report.category.name} - ${report.subdistrict}, ${report.city}.";
+
+                                return ListTile(
+                                  key: Key(report.id.toString()),
+                                  title: Text(title),
+                                  subtitle: Text(
+                                    report.detail,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                  onTap: () {
+                                    context.router.navigate(
+                                      ReportScreenRoute(id: report.id),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      'Jika ada laporan yang serupa, mohon untuk melakukan dukungan kepada laporan yang sudah ada dengan menekan tombol "👍" (fitur segera datang), atau jika Anda yakin laporan Anda berbeda maka silahkan untuk membuat laporan baru.',
+                      style: TextStyle(
+                        color: Colors.grey.shade700,
+                      ),
                     ),
                     SizedBox(height: 15),
                     Text(

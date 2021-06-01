@@ -7,6 +7,7 @@ import 'package:frontend_app_public/features/report/data/models/report_response_
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/get_report_usecase.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/get_reports_usecase.dart';
+import 'package:frontend_app_public/features/report/domain/usecases/post_report_similarity_usercase.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/post_report_usecase.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,10 +19,12 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   final GetReportsUsecase reportsUsecase;
   final GetReportUsecase reportUsecase;
   final CreateReportUsecase createReportUsecase;
+  final PostReportSimilarityUsecase reportSimilarityUsecase;
 
   ReportBloc({
     required this.reportsUsecase,
     required this.reportUsecase,
+    required this.reportSimilarityUsecase,
     required this.createReportUsecase,
   }) : super(ReportInitialState());
 
