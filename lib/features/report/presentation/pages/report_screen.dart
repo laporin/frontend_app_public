@@ -72,6 +72,17 @@ class ReportScreen extends StatelessWidget {
 
                       SizedBox(height: 15),
                       Text(
+                        'Nomor Serial Laporan',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(report.serial),
+                      SizedBox(height: 15),
+                      Text(
                         'Deskripsi Laporan',
                         style: TextStyle(
                           fontSize: 16,
