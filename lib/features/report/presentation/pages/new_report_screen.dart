@@ -28,7 +28,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
   final _subdistrict = TextEditingController(text: 'ngluwar');
   final _address =
       TextEditingController(text: 'rt 1 rw 2 jalan raya ditengah sawah');
-  var _visibility = false;
+  var _private = false;
   Position? position;
 
   String dropdownValue = 'Kemacetan';
@@ -476,22 +476,22 @@ class _NewReportScreenState extends State<NewReportScreen> {
                         RadioListTile<bool>(
                           contentPadding: EdgeInsets.all(0),
                           title: const Text('Ya'),
-                          value: true,
-                          groupValue: _visibility,
+                          value: false,
+                          groupValue: _private,
                           onChanged: (bool? value) {
                             setState(() {
-                              _visibility = value ?? false;
+                              _private = value ?? false;
                             });
                           },
                         ),
                         RadioListTile<bool>(
                           contentPadding: EdgeInsets.all(0),
                           title: const Text('Tidak'),
-                          value: false,
-                          groupValue: _visibility,
+                          value: true,
+                          groupValue: _private,
                           onChanged: (bool? value) {
                             setState(() {
-                              _visibility = value ?? false;
+                              _private = value ?? true;
                             });
                           },
                         ),
@@ -509,7 +509,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                             subdistrict: _subdistrict.text,
                             latitude: 10.10,
                             longitude: 10.10,
-                            private: _visibility,
+                            private: _private,
                             images: _files.map((e) => e.path).toList(),
                           );
                           BlocProvider.of<ReportBloc>(context).add(

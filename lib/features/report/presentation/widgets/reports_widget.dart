@@ -16,32 +16,22 @@ class _ReportsWidgetState extends State<ReportsWidget> {
       RefreshController(initialRefresh: false);
 
   void _onRefresh() async {
-    // monitor network fetch
     BlocProvider.of<ReportBloc>(context)..add(GetReportsEvent());
-    // await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {});
     // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
-  }
-
-  void _onLoading() async {
-    // monitor network fetch
-    // await Future.delayed(Duration(milliseconds: 1000));
-
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-    // items.add((items.length + 1).toString());
-    if (mounted) setState(() {});
-    _refreshController.loadComplete();
   }
 
   @override
   Widget build(BuildContext context) {
     return SmartRefresher(
       enablePullDown: true,
-      enablePullUp: true,
-      header: WaterDropHeader(),
+      header: WaterDropHeader(
+        waterDropColor: Colors.blue,
+      ),
       controller: _refreshController,
       onRefresh: _onRefresh,
-      onLoading: _onLoading,
+      physics: BouncingScrollPhysics(),
       footer: CustomFooter(
         builder: (BuildContext context, LoadStatus? mode) {
           Widget body;
@@ -62,53 +52,47 @@ class _ReportsWidgetState extends State<ReportsWidget> {
           );
         },
       ),
-      child: BlocProvider(
-        create: (context) => getIt<ReportBloc>()..add(GetReportsEvent()),
-        child: BlocBuilder<ReportBloc, ReportState>(
-          buildWhen: (previousState, state) {
-            return previousState != state;
-          },
-          builder: (context, state) {
-            if (state is ReportInitialState) {
-              return Text('init.');
-            } else if (state is ReportLoadingState) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is ReportsLoadedState) {
-              final entries = state.reportsResponseModel.data;
+      child: BlocBuilder<ReportBloc, ReportState>(
+        builder: (context, state) {
+          if (state is ReportInitialState) {
+            return Text('init.');
+          } else if (state is ReportLoadingState) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is ReportsLoadedState) {
+            final entries = state.reportsResponseModel.data;
 
-              return ListView.builder(
-                physics: BouncingScrollPhysics(),
-                padding: const EdgeInsets.all(8),
-                itemCount: entries.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final report = entries[index];
-                  final title =
-                      "${report.category.name} - ${report.subdistrict}, ${report.city}.";
+            return ListView.builder(
+              physics: BouncingScrollPhysics(),
+              padding: const EdgeInsets.all(8),
+              itemCount: entries.length,
+              itemBuilder: (BuildContext context, int index) {
+                final report = entries[index];
+                final title =
+                    "${report.category.name} - ${report.subdistrict}, ${report.city}.";
 
-                  return ListTile(
-                    key: Key(report.id.toString()),
-                    leading: CircleAvatar(backgroundColor: Colors.blue),
-                    title: Text(title),
-                    subtitle: Text(
-                      report.detail,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    onTap: () {
-                      context.router.navigate(ReportScreenRoute(id: report.id));
-                    },
-                  );
-                },
-              );
-            } else if (state is ReportErrorState) {
-              return Text('Error');
-            } else {
-              return Text('Something went wrong');
-            }
-          },
-        ),
+                return ListTile(
+                  key: Key(report.id.toString()),
+                  leading: CircleAvatar(backgroundColor: Colors.blue),
+                  title: Text(title),
+                  subtitle: Text(
+                    report.detail,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  onTap: () {
+                    context.router.navigate(ReportScreenRoute(id: report.id));
+                  },
+                );
+              },
+            );
+          } else if (state is ReportErrorState) {
+            return Text('Error');
+          } else {
+            return Text('Something went wrong');
+          }
+        },
       ),
     );
   }
