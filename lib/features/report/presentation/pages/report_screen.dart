@@ -146,6 +146,7 @@ class ReportScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
+                      Text('Segera datang.'),
                     ],
                   );
                 } else if (state is ReportLoadingState) {
