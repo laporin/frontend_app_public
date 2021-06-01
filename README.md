@@ -16,9 +16,10 @@
 * Track the report progress timeline.*
 
 > _* = Comming soon_
+
 ## What is the unique points?
 
-* Using clean code architecture. Yes i'm serious.
+* Using clean code architecture.
 * Build automatically every push to the branch master and then create downloadable APK artifact.
 
 ## Dependencies
