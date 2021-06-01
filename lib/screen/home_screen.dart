@@ -53,6 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text('Fitur segera datang!'),
@@ -90,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: CircleAvatar(
                       backgroundColor: Colors.blue.shade800,
-                      child: Text('AI'),
+                      child: Icon(Icons.account_circle),
                     ),
                   );
                 } else if (state is AuthenticationInitialState) {
