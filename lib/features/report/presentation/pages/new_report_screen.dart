@@ -501,6 +501,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          final images = _files.map((e) => e.path).toList();
                           final reportData = CreateReportRequestModel(
                             detail: _detail.text,
                             address: _detail.text,
@@ -510,8 +511,9 @@ class _NewReportScreenState extends State<NewReportScreen> {
                             latitude: 10.10,
                             longitude: 10.10,
                             private: _private,
-                            images: _files.map((e) => e.path).toList(),
+                            images: images,
                           );
+                          print(images);
                           BlocProvider.of<ReportBloc>(context).add(
                             CreateReportEvent(data: reportData),
                           );

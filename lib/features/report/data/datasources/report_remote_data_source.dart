@@ -46,7 +46,7 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
   Future<CreateReportResponseModel> postReport(
     CreateReportRequestModel body,
   ) async {
-    var reportData = FormData.fromMap({
+    var apa = {
       'detail': body.detail,
       'address': body.address,
       'category_id': body.categoryId,
@@ -55,14 +55,17 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
       'latitude': 10.10,
       'longitude': 10.10,
       'private': body.private,
-    });
+    };
 
     if (body.images.length > 0) {
       final images = [];
       body.images.forEach((element) {
         images.add(MultipartFile.fromFileSync(element));
       });
+      apa['images'] = images;
     }
+
+    var reportData = FormData.fromMap(apa);
 
     final response = await dio.post(
       "${Env.backendUrl}/api/reports",
