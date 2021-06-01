@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
+import 'package:frontend_app_public/core/helper/censor.dart';
 import 'package:frontend_app_public/features/report/data/models/report_data_model.dart';
 import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
 
@@ -80,6 +81,17 @@ class ReportScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Text(report.detail),
+                      SizedBox(height: 15),
+                      Text(
+                        'Oleh',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(censorUsername(report.user.username)),
                       SizedBox(height: 15),
                       Text(
                         'Kategori',
