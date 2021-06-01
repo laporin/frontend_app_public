@@ -52,7 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Fitur segera datang!'),
+                                      ),
+                                    );
+                                  },
                                   child: Text('Lihat daftar laporan saya'),
                                 ),
                                 ElevatedButton(
