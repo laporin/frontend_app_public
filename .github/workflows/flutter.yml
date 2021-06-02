@@ -39,7 +39,7 @@ jobs:
           file_name: .env.development
 
       - name: Create keystore file
-      - run: |
+        run: |
           echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
           gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o android/release.keystore.jks release.keystore.asc
           ls android/release.keystore.jks
