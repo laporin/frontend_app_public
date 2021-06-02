@@ -35,3 +35,8 @@ class AuthenticationCheckEvent extends AuthenticationEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetAuthenticatedUserEvent extends AuthenticationEvent {
+  @override
+  List<Object> get props => [];
+}

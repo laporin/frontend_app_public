@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend_app_public/config/di/injection.dart';
 import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/core/helper/censor.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/features/report/data/models/report_data_model.dart';
 import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
+import 'package:frontend_app_public/features/user/presentation/bloc/user_bloc.dart';
 
 class ReportScreen extends StatefulWidget {
   final int id;
@@ -22,10 +22,15 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+  ReportDataModel? report;
+
   @override
   void initState() {
     super.initState();
+
     BlocProvider.of<ReportBloc>(context)..add(GetReportEvent(id: widget.id));
+    BlocProvider.of<UserBloc>(context)
+      ..add(UserEvent.getAuthenticatedUserEvent());
   }
 
   @override
@@ -40,57 +45,82 @@ class _ReportScreenState extends State<ReportScreen> {
           BlocBuilder<AuthenticationBloc, AuthenticationState>(
             builder: (context, state) {
               if (state is AuthenticatedState) {
-                return Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Fitur segera datang!'),
-                          ),
-                        );
+                return BlocBuilder<UserBloc, UserState>(
+                  builder: (context, state) {
+                    return state.map(
+                      initial: (state) {
+                        return Text('init');
                       },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () async {
-                        final choice = await showDialog<bool>(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Hapus laporan'),
-                            content: const Text(
-                                'Apakah Anda yakin untuk menghapus laporan ini?'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, false),
-                                child: const Text('Tidak'),
+                      loading: (state) {
+                        return Text('loading');
+                      },
+                      error: (state) {
+                        return Text(state.message);
+                      },
+                      loaded: (state) {
+                        if (report != null && report?.user.id == state.user.id) {
+                          return Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Fitur segera datang!'),
+                                    ),
+                                  );
+                                },
                               ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, true),
-                                child: const Text('Ya'),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () async {
+                                  final choice = await showDialog<bool>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      title: const Text('Hapus laporan'),
+                                      content: const Text(
+                                          'Apakah Anda yakin untuk menghapus laporan ini?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, false),
+                                          child: const Text('Tidak'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, true),
+                                          child: const Text('Ya'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+
+                                  if (choice == true) {
+                                    setState(() {
+                                      BlocProvider.of<ReportBloc>(context)
+                                        ..add(
+                                          DeleteReportEvent(id: widget.id),
+                                        );
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Menghapus laporan...'),
+                                      ),
+                                    );
+                                    AutoRouter.of(context)
+                                        .navigate(HomeScreenRoute());
+                                  }
+                                },
                               ),
                             ],
-                          ),
-                        );
-
-                        if (choice == true) {
-                          setState(() {
-                            BlocProvider.of<ReportBloc>(context)
-                              ..add(
-                                DeleteReportEvent(id: widget.id),
-                              );
-                          });
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Menghapus laporan...'),
-                            ),
                           );
-                          AutoRouter.of(context).navigate(HomeScreenRoute());
+                        } else {
+                          return Container();
                         }
                       },
-                    ),
-                  ],
+                    );
+                  },
                 );
               } else {
                 return Container();
@@ -102,10 +132,17 @@ class _ReportScreenState extends State<ReportScreen> {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16),
-          child: BlocBuilder<ReportBloc, ReportState>(
+          child: BlocConsumer<ReportBloc, ReportState>(
+            listener: (context, state) {
+              if (state is ReportLoadedState) {
+                setState(() {
+                  report = state.data.data;
+                });
+              }
+            },
             builder: (context, state) {
               if (state is ReportLoadedState) {
-                final ReportDataModel report = state.data.data;
+                final report = state.data.data;
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

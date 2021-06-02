@@ -1,3 +1,5 @@
+import 'package:frontend_app_public/core/constants.dart';
+import 'package:frontend_app_public/features/user/data/models/user_authenticated_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/authentication_credential_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_response_model.dart';
@@ -11,10 +13,6 @@ abstract class AuthenticationLocalDataSource {
   Future<void> deleteAuthCredentials();
   Future<AuthenticationCredentialModel> getAuthCredentials();
 }
-
-const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
-const TOKEN_TYPE_KEY = "TOKEN_TYPE";
-const USER_ID_KEY = "USER_ID";
 
 @Injectable(as: AuthenticationLocalDataSource)
 class AuthenticationLocalDataSourceImpl

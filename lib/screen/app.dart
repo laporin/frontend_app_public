@@ -5,6 +5,7 @@ import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
 import 'package:frontend_app_public/features/report/presentation/similarity_report_bloc/similarity_report_bloc_bloc.dart';
+import 'package:frontend_app_public/features/user/presentation/bloc/user_bloc.dart';
 
 final appRouter = AppRouter();
 
@@ -24,6 +25,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<SimilarityReportBlocBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<UserBloc>(),
         ),
       ],
       child: MaterialApp.router(

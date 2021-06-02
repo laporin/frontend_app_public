@@ -1,1 +1,4 @@
-const BACKEND_URL = "apa";
+const BACKEND_URL = 'apa';
+const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
+const TOKEN_TYPE_KEY = 'TOKEN_TYPE';
+const USER_ID_KEY = 'USER_ID';
