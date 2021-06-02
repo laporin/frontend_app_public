@@ -41,8 +41,9 @@ jobs:
       - name: Create keystore file
         run: |
           echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
-          gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o android/release.keystore.jks release.keystore.asc
-          ls android/release.keystore.jks
+          gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o release.keystore.jks release.keystore.asc
+          ls release.keystore.jks
+          pwd
 
       - uses: subosito/flutter-action@v1
         with:
@@ -57,8 +58,8 @@ jobs:
           STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           ALIAS: ${{ secrets.ALIAS }}
-          KEY_PATH: android/release.keystore.jks
-          STORE_FILE: android/release.keystore.jks
+          KEY_PATH: release.keystore.jks
+          STORE_FILE: release.keystore.jks
 
       - name: Release Apps
         uses: ncipollo/release-action@v1
