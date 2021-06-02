@@ -3,6 +3,7 @@ import 'package:frontend_app_public/core/exception/server_exception.dart';
 import 'package:frontend_app_public/config/env/env.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_request_model.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_response_model.dart';
+import 'package:frontend_app_public/features/report/data/models/delete_report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/report_similarity_request_model.dart';
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
@@ -13,7 +14,9 @@ abstract class ReportRemoteDataSource {
   Future<ReportResponseModel> getReport(int id);
   Future<CreateReportResponseModel> postReport(CreateReportRequestModel body);
   Future<ReportsResponseModel> postReportSimilarity(
-      ReportSimilarityRequestModel body);
+    ReportSimilarityRequestModel body,
+  );
+  Future<DeleteReportResponseModel> deleteReport(int id);
 }
 
 @Injectable(as: ReportRemoteDataSource)
@@ -82,9 +85,20 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
   Future<ReportsResponseModel> postReportSimilarity(
     ReportSimilarityRequestModel body,
   ) async {
-    final response = await dio.post("${Env.backendAiUrl}/api/text-similarity", data: body);
+    final response =
+        await dio.post("${Env.backendAiUrl}/api/text-similarity", data: body);
     if (response.statusCode == 200) {
       return ReportsResponseModel.fromJson(response.data);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<DeleteReportResponseModel> deleteReport(int id) async {
+    final response = await dio.delete("${Env.backendUrl}/api/reports/$id");
+    if (response.statusCode == 200) {
+      return DeleteReportResponseModel.fromJson(response.data);
     } else {
       throw ServerException();
     }

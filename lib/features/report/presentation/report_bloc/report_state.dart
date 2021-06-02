@@ -45,3 +45,8 @@ class CreatedReportState extends ReportState {
   @override
   List<Object?> get props => [];
 }
+
+class DeletedReportState extends ReportState {
+  @override
+  List<Object?> get props => [];
+}

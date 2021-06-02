@@ -80,11 +80,14 @@ class AuthenticationLocalDataSourceImpl
   Future<AuthenticationCredentialModel> getAuthCredentials() async {
     final accessToken = await storageService.read(key: ACCESS_TOKEN_KEY);
     final tokenType = await storageService.read(key: TOKEN_TYPE_KEY);
-    final userId = await storageService.read(key: USER_ID_KEY);
+    var userId = await storageService.read(key: USER_ID_KEY);
+
+    var id = userId ?? '0';
+    final intUserId = int.parse(id);
     final credential = AuthenticationCredentialModel(
       accessToken: accessToken ?? '',
       tokenType: tokenType ?? '',
-      userId: userId as int,
+      userId: intUserId,
     );
     return Future.value(credential);
   }

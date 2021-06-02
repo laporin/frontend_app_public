@@ -5,6 +5,7 @@ import 'package:frontend_app_public/core/failure/server_failure.dart';
 import 'package:frontend_app_public/features/report/data/datasources/report_remote_data_source.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_request_model.dart';
+import 'package:frontend_app_public/features/report/data/models/delete_report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/report_similarity_request_model.dart';
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
@@ -56,6 +57,16 @@ class BackendReportRepository implements ReportRepository {
   ) async {
     try {
       final response = await remoteDataSource.postReportSimilarity(body);
+      return Right(response);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, DeleteReportResponseModel>> deleteReport(int id) async {
+    try {
+      final response = await remoteDataSource.deleteReport(id);
       return Right(response);
     } on ServerException {
       return Left(ServerFailure());

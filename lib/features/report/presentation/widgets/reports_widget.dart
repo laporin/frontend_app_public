@@ -95,7 +95,9 @@ class _ReportsWidgetState extends State<ReportsWidget> {
           } else if (state is ReportErrorState) {
             return Text('Error');
           } else {
-            return Text('Something went wrong');
+            return Center(
+              child: Text('Please efresh the screen (pull down)'),
+            );
           }
         },
       ),

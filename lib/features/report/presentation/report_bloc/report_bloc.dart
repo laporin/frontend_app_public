@@ -5,6 +5,7 @@ import 'package:frontend_app_public/core/usecases/usecase.dart';
 import 'package:frontend_app_public/features/report/data/models/create_report_request_model.dart';
 import 'package:frontend_app_public/features/report/data/models/report_response_model.dart';
 import 'package:frontend_app_public/features/report/data/models/reports_response_model.dart';
+import 'package:frontend_app_public/features/report/domain/usecases/delete_report_usecase.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/get_report_usecase.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/get_reports_usecase.dart';
 import 'package:frontend_app_public/features/report/domain/usecases/post_report_similarity_usercase.dart';
@@ -20,12 +21,14 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   final GetReportUsecase reportUsecase;
   final CreateReportUsecase createReportUsecase;
   final PostReportSimilarityUsecase reportSimilarityUsecase;
+  final DeleteReportUsecase deleteReportUsecase;
 
   ReportBloc({
     required this.reportsUsecase,
     required this.reportUsecase,
     required this.reportSimilarityUsecase,
     required this.createReportUsecase,
+    required this.deleteReportUsecase,
   }) : super(ReportInitialState());
 
   @override
@@ -55,6 +58,14 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
       yield responseOrError.fold(
         (left) => ReportErrorState(message: 'Something went wrong'),
         (right) => CreatedReportState(),
+      );
+    } else if (event is DeleteReportEvent) {
+      yield ReportLoadingState();
+
+      final responseOrError = await deleteReportUsecase(event.id);
+      yield responseOrError.fold(
+        (left) => ReportErrorState(message: 'Something went wrong'),
+        (right) => DeletedReportState(),
       );
     } else {
       yield ReportErrorState(message: 'Something went wrong.');

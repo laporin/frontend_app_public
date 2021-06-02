@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/di/injection.dart';
+import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/core/helper/censor.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:frontend_app_public/features/report/data/models/report_data_model.dart';
@@ -40,7 +42,7 @@ class _ReportScreenState extends State<ReportScreen> {
               if (state is AuthenticatedState) {
                 return Row(
                   children: [
-                    ElevatedButton.icon(
+                    IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -49,14 +51,44 @@ class _ReportScreenState extends State<ReportScreen> {
                           ),
                         );
                       },
-                      label: Text('Edit'),
                     ),
-                    ElevatedButton.icon(
+                    IconButton(
                       icon: Icon(Icons.delete),
-                      onPressed: () {
-                        // delete report use case
+                      onPressed: () async {
+                        final choice = await showDialog<bool>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Hapus laporan'),
+                            content: const Text(
+                                'Apakah Anda yakin untuk menghapus laporan ini?'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: const Text('Tidak'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                child: const Text('Ya'),
+                              ),
+                            ],
+                          ),
+                        );
+
+                        if (choice == true) {
+                          setState(() {
+                            BlocProvider.of<ReportBloc>(context)
+                              ..add(
+                                DeleteReportEvent(id: widget.id),
+                              );
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Menghapus laporan...'),
+                            ),
+                          );
+                          AutoRouter.of(context).navigate(HomeScreenRoute());
+                        }
                       },
-                      label: Text('Hapus'),
                     ),
                   ],
                 );
@@ -81,7 +113,7 @@ class _ReportScreenState extends State<ReportScreen> {
                     if (report.images.length > 0)
                       CarouselSlider(
                         options: CarouselOptions(
-                          height: 200,
+                          height: 250,
                           enlargeCenterPage: true,
                           enableInfiniteScroll: false,
                         ),

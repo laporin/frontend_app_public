@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else if (state is ErrorAuthenticatedState) {
                   return Text('error');
                 } else {
-                  return Text('else');
+                  return Container();
                 }
               },
             )
