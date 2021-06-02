@@ -41,8 +41,8 @@ jobs:
       - name: Create keystore file
         run: |
           echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
-          gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o release.keystore.jks release.keystore.asc
-          ls release.keystore.jks
+          gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o android/app/release.keystore.jks release.keystore.asc
+          ls android/app/release.keystore.jks
           pwd
 
       - uses: subosito/flutter-action@v1
