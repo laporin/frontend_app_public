@@ -30,6 +30,7 @@ jobs:
           flutter-version: "2.0.6"
           channel: "stable" # dev, stable, beta
       - run: flutter pub get
+      - run: flutter pub run build_runner build --delete-conflicting-outputs
       - run: flutter build apk --split-per-abi
 
       - name: Release Apps
