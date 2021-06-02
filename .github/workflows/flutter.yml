@@ -49,17 +49,25 @@ jobs:
         with:
           flutter-version: "2.0.6"
           channel: "stable" # dev, stable, beta
+        env:
+          ALIAS: ${{ secrets.ALIAS }}
+          KEY_JKS: ${{ secrets.KEY_JKS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+        run: |
+          echo $KEY_JKS > android/release.keystore.jks
+
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - run: flutter build apk --split-per-abi
         env:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-          STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           ALIAS: ${{ secrets.ALIAS }}
-          KEY_PATH: /home/runner/work/frontend_app_public/frontend_app_public/android/app/release.keystore.jks
-          STORE_FILE: /home/runner/work/frontend_app_public/frontend_app_public/android/app/release.keystore.jks
+          KEY_PATH: release.keystore.jks
+          STORE_FILE: release.keystore.jks
 
       - name: Release Apps
         uses: ncipollo/release-action@v1
