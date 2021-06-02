@@ -38,19 +38,25 @@ jobs:
           directory: .
           file_name: .env.development
 
+      - name: Create keystore file
+      - run: |
+          echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
+          gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o android/release.keystore.jks release.keystore.asc
+          ls android/release.keystore.jks
+
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "2.0.6"
           channel: "stable" # dev, stable, beta
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter build apk --split-per-abi
 
-      - name: Create keystore file
-      - run: |
-          echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
-          gpg --batch --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" -d -o android/release.keystore.jks release.keystore.asc
-          ls android/release.keystore.jks
+      - run: flutter build apk --split-per-abi
+        env:
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          ALIAS: ${{ secrets.ALIAS }}
+          KEY_PATH: android/release.keystore.jks
 
       - name: Release Apps
         uses: ncipollo/release-action@v1
