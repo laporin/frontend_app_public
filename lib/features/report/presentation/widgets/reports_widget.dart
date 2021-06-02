@@ -17,7 +17,9 @@ class _ReportsWidgetState extends State<ReportsWidget> {
   @override
   void initState() {
     super.initState();
+
     BlocProvider.of<ReportBloc>(context)..add(GetReportsEvent());
+    setState(() {});
   }
 
   void _onRefresh() async {
@@ -96,7 +98,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
             return Text('Error');
           } else {
             return Center(
-              child: Text('Please efresh the screen (pull down)'),
+              child: Text('Please refresh the screen (pull down)'),
             );
           }
         },
