@@ -11,6 +11,20 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
+
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_KEY: VALUE
+          envkey_ENVIRONMENT: PRODUCTION
+          envkey_BACKEND_URL: https://laporin.arifikhsanudin.my.id
+          envkey_BACKEND_AI_URL: https://backend-ai-service-twldy2igbq-et.a.run.app
+          envkey_IS_STUDENT: true
+          # envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          # some_other_variable: foobar
+          directory: .
+          file_name: .env.production
+
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "2.0.6"
