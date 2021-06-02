@@ -14,6 +14,7 @@ abstract class AuthenticationLocalDataSource {
 
 const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
 const TOKEN_TYPE_KEY = "TOKEN_TYPE";
+const USER_ID_KEY = "USER_ID";
 
 @Injectable(as: AuthenticationLocalDataSource)
 class AuthenticationLocalDataSourceImpl
@@ -37,7 +38,14 @@ class AuthenticationLocalDataSourceImpl
         key: ACCESS_TOKEN_KEY,
         value: data.accessToken,
       ),
-      await storageService.create(key: TOKEN_TYPE_KEY, value: data.tokenType),
+      await storageService.create(
+        key: TOKEN_TYPE_KEY,
+        value: data.tokenType,
+      ),
+      await storageService.create(
+        key: USER_ID_KEY,
+        value: data.user.id.toString(),
+      ),
     ]);
   }
 
@@ -45,8 +53,17 @@ class AuthenticationLocalDataSourceImpl
   Future<void> saveRegisterCredentials(RegisterResponseModel data) async {
     return Future.value([
       await storageService.create(
-          key: ACCESS_TOKEN_KEY, value: data.accessToken),
-      await storageService.create(key: TOKEN_TYPE_KEY, value: data.tokenType),
+        key: ACCESS_TOKEN_KEY,
+        value: data.accessToken,
+      ),
+      await storageService.create(
+        key: TOKEN_TYPE_KEY,
+        value: data.tokenType,
+      ),
+      await storageService.create(
+        key: USER_ID_KEY,
+        value: data.user.id.toString(),
+      ),
     ]);
   }
 
@@ -55,6 +72,7 @@ class AuthenticationLocalDataSourceImpl
     return Future.value([
       await storageService.delete(key: ACCESS_TOKEN_KEY),
       await storageService.delete(key: TOKEN_TYPE_KEY),
+      await storageService.delete(key: USER_ID_KEY),
     ]);
   }
 
@@ -62,9 +80,11 @@ class AuthenticationLocalDataSourceImpl
   Future<AuthenticationCredentialModel> getAuthCredentials() async {
     final accessToken = await storageService.read(key: ACCESS_TOKEN_KEY);
     final tokenType = await storageService.read(key: TOKEN_TYPE_KEY);
+    final userId = await storageService.read(key: USER_ID_KEY);
     final credential = AuthenticationCredentialModel(
       accessToken: accessToken ?? '',
       tokenType: tokenType ?? '',
+      userId: userId as int,
     );
     return Future.value(credential);
   }

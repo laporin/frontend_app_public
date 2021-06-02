@@ -11,6 +11,7 @@ _$_AuthenticationCredentialModel _$_$_AuthenticationCredentialModelFromJson(
   return _$_AuthenticationCredentialModel(
     accessToken: json['access_token'] as String,
     tokenType: json['token_type'] as String,
+    userId: json['user_id'] as int,
   );
 }
 
@@ -19,4 +20,5 @@ Map<String, dynamic> _$_$_AuthenticationCredentialModelToJson(
     <String, dynamic>{
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
+      'user_id': instance.userId,
     };

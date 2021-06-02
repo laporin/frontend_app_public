@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:frontend_app_public/features/authentication/data/models/authentication_user_model.dart';
 
 part 'register_response_model.freezed.dart';
 part 'register_response_model.g.dart';
@@ -8,6 +9,7 @@ class RegisterResponseModel with _$RegisterResponseModel {
   const factory RegisterResponseModel({
     required String accessToken,
     required String tokenType,
+    required AuthenticationUserModel user,
   }) = _RegisterResponseModel;
 
   factory RegisterResponseModel.fromJson(Map<String, dynamic> json) =>

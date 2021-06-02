@@ -21,10 +21,13 @@ class _$LoginResponseModelTearOff {
   const _$LoginResponseModelTearOff();
 
   _LoginResponseModel call(
-      {required String accessToken, required String tokenType}) {
+      {required String accessToken,
+      required String tokenType,
+      required AuthenticationUserModel user}) {
     return _LoginResponseModel(
       accessToken: accessToken,
       tokenType: tokenType,
+      user: user,
     );
   }
 
@@ -40,6 +43,7 @@ const $LoginResponseModel = _$LoginResponseModelTearOff();
 mixin _$LoginResponseModel {
   String get accessToken => throw _privateConstructorUsedError;
   String get tokenType => throw _privateConstructorUsedError;
+  AuthenticationUserModel get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +56,10 @@ abstract class $LoginResponseModelCopyWith<$Res> {
   factory $LoginResponseModelCopyWith(
           LoginResponseModel value, $Res Function(LoginResponseModel) then) =
       _$LoginResponseModelCopyWithImpl<$Res>;
-  $Res call({String accessToken, String tokenType});
+  $Res call(
+      {String accessToken, String tokenType, AuthenticationUserModel user});
+
+  $AuthenticationUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -68,6 +75,7 @@ class _$LoginResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? tokenType = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       accessToken: accessToken == freezed
@@ -78,7 +86,18 @@ class _$LoginResponseModelCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AuthenticationUserModel,
     ));
+  }
+
+  @override
+  $AuthenticationUserModelCopyWith<$Res> get user {
+    return $AuthenticationUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -89,7 +108,11 @@ abstract class _$LoginResponseModelCopyWith<$Res>
           _LoginResponseModel value, $Res Function(_LoginResponseModel) then) =
       __$LoginResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({String accessToken, String tokenType});
+  $Res call(
+      {String accessToken, String tokenType, AuthenticationUserModel user});
+
+  @override
+  $AuthenticationUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -107,6 +130,7 @@ class __$LoginResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? tokenType = freezed,
+    Object? user = freezed,
   }) {
     return _then(_LoginResponseModel(
       accessToken: accessToken == freezed
@@ -117,6 +141,10 @@ class __$LoginResponseModelCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AuthenticationUserModel,
     ));
   }
 }
@@ -125,7 +153,7 @@ class __$LoginResponseModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LoginResponseModel implements _LoginResponseModel {
   const _$_LoginResponseModel(
-      {required this.accessToken, required this.tokenType});
+      {required this.accessToken, required this.tokenType, required this.user});
 
   factory _$_LoginResponseModel.fromJson(Map<String, dynamic> json) =>
       _$_$_LoginResponseModelFromJson(json);
@@ -134,10 +162,12 @@ class _$_LoginResponseModel implements _LoginResponseModel {
   final String accessToken;
   @override
   final String tokenType;
+  @override
+  final AuthenticationUserModel user;
 
   @override
   String toString() {
-    return 'LoginResponseModel(accessToken: $accessToken, tokenType: $tokenType)';
+    return 'LoginResponseModel(accessToken: $accessToken, tokenType: $tokenType, user: $user)';
   }
 
   @override
@@ -149,14 +179,17 @@ class _$_LoginResponseModel implements _LoginResponseModel {
                     .equals(other.accessToken, accessToken)) &&
             (identical(other.tokenType, tokenType) ||
                 const DeepCollectionEquality()
-                    .equals(other.tokenType, tokenType)));
+                    .equals(other.tokenType, tokenType)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(accessToken) ^
-      const DeepCollectionEquality().hash(tokenType);
+      const DeepCollectionEquality().hash(tokenType) ^
+      const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +205,8 @@ class _$_LoginResponseModel implements _LoginResponseModel {
 abstract class _LoginResponseModel implements LoginResponseModel {
   const factory _LoginResponseModel(
       {required String accessToken,
-      required String tokenType}) = _$_LoginResponseModel;
+      required String tokenType,
+      required AuthenticationUserModel user}) = _$_LoginResponseModel;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$_LoginResponseModel.fromJson;
@@ -181,6 +215,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   String get accessToken => throw _privateConstructorUsedError;
   @override
   String get tokenType => throw _privateConstructorUsedError;
+  @override
+  AuthenticationUserModel get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LoginResponseModelCopyWith<_LoginResponseModel> get copyWith =>

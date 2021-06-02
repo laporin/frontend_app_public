@@ -8,6 +8,7 @@ class AuthenticationCredentialModel with _$AuthenticationCredentialModel {
   const factory AuthenticationCredentialModel({
     required String accessToken,
     required String tokenType,
+    required int userId,
   }) = _AuthenticationCredentialModel;
 
   factory AuthenticationCredentialModel.fromJson(Map<String, dynamic> json) =>

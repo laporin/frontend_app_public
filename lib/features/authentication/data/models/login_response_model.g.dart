@@ -11,6 +11,8 @@ _$_LoginResponseModel _$_$_LoginResponseModelFromJson(
   return _$_LoginResponseModel(
     accessToken: json['access_token'] as String,
     tokenType: json['token_type'] as String,
+    user:
+        AuthenticationUserModel.fromJson(json['user'] as Map<String, dynamic>),
   );
 }
 
@@ -19,4 +21,5 @@ Map<String, dynamic> _$_$_LoginResponseModelToJson(
     <String, dynamic>{
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
+      'user': instance.user,
     };

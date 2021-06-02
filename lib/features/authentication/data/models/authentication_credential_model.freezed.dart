@@ -22,10 +22,13 @@ class _$AuthenticationCredentialModelTearOff {
   const _$AuthenticationCredentialModelTearOff();
 
   _AuthenticationCredentialModel call(
-      {required String accessToken, required String tokenType}) {
+      {required String accessToken,
+      required String tokenType,
+      required int userId}) {
     return _AuthenticationCredentialModel(
       accessToken: accessToken,
       tokenType: tokenType,
+      userId: userId,
     );
   }
 
@@ -41,6 +44,7 @@ const $AuthenticationCredentialModel = _$AuthenticationCredentialModelTearOff();
 mixin _$AuthenticationCredentialModel {
   String get accessToken => throw _privateConstructorUsedError;
   String get tokenType => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +58,7 @@ abstract class $AuthenticationCredentialModelCopyWith<$Res> {
           AuthenticationCredentialModel value,
           $Res Function(AuthenticationCredentialModel) then) =
       _$AuthenticationCredentialModelCopyWithImpl<$Res>;
-  $Res call({String accessToken, String tokenType});
+  $Res call({String accessToken, String tokenType, int userId});
 }
 
 /// @nodoc
@@ -70,6 +74,7 @@ class _$AuthenticationCredentialModelCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? tokenType = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       accessToken: accessToken == freezed
@@ -80,6 +85,10 @@ class _$AuthenticationCredentialModelCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -92,7 +101,7 @@ abstract class _$AuthenticationCredentialModelCopyWith<$Res>
           $Res Function(_AuthenticationCredentialModel) then) =
       __$AuthenticationCredentialModelCopyWithImpl<$Res>;
   @override
-  $Res call({String accessToken, String tokenType});
+  $Res call({String accessToken, String tokenType, int userId});
 }
 
 /// @nodoc
@@ -112,6 +121,7 @@ class __$AuthenticationCredentialModelCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? tokenType = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_AuthenticationCredentialModel(
       accessToken: accessToken == freezed
@@ -122,6 +132,10 @@ class __$AuthenticationCredentialModelCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -131,7 +145,9 @@ class __$AuthenticationCredentialModelCopyWithImpl<$Res>
 class _$_AuthenticationCredentialModel
     implements _AuthenticationCredentialModel {
   const _$_AuthenticationCredentialModel(
-      {required this.accessToken, required this.tokenType});
+      {required this.accessToken,
+      required this.tokenType,
+      required this.userId});
 
   factory _$_AuthenticationCredentialModel.fromJson(
           Map<String, dynamic> json) =>
@@ -141,10 +157,12 @@ class _$_AuthenticationCredentialModel
   final String accessToken;
   @override
   final String tokenType;
+  @override
+  final int userId;
 
   @override
   String toString() {
-    return 'AuthenticationCredentialModel(accessToken: $accessToken, tokenType: $tokenType)';
+    return 'AuthenticationCredentialModel(accessToken: $accessToken, tokenType: $tokenType, userId: $userId)';
   }
 
   @override
@@ -156,14 +174,17 @@ class _$_AuthenticationCredentialModel
                     .equals(other.accessToken, accessToken)) &&
             (identical(other.tokenType, tokenType) ||
                 const DeepCollectionEquality()
-                    .equals(other.tokenType, tokenType)));
+                    .equals(other.tokenType, tokenType)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(accessToken) ^
-      const DeepCollectionEquality().hash(tokenType);
+      const DeepCollectionEquality().hash(tokenType) ^
+      const DeepCollectionEquality().hash(userId);
 
   @JsonKey(ignore: true)
   @override
@@ -181,7 +202,8 @@ abstract class _AuthenticationCredentialModel
     implements AuthenticationCredentialModel {
   const factory _AuthenticationCredentialModel(
       {required String accessToken,
-      required String tokenType}) = _$_AuthenticationCredentialModel;
+      required String tokenType,
+      required int userId}) = _$_AuthenticationCredentialModel;
 
   factory _AuthenticationCredentialModel.fromJson(Map<String, dynamic> json) =
       _$_AuthenticationCredentialModel.fromJson;
@@ -190,6 +212,8 @@ abstract class _AuthenticationCredentialModel
   String get accessToken => throw _privateConstructorUsedError;
   @override
   String get tokenType => throw _privateConstructorUsedError;
+  @override
+  int get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AuthenticationCredentialModelCopyWith<_AuthenticationCredentialModel>

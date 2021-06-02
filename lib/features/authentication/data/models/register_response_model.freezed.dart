@@ -22,10 +22,13 @@ class _$RegisterResponseModelTearOff {
   const _$RegisterResponseModelTearOff();
 
   _RegisterResponseModel call(
-      {required String accessToken, required String tokenType}) {
+      {required String accessToken,
+      required String tokenType,
+      required AuthenticationUserModel user}) {
     return _RegisterResponseModel(
       accessToken: accessToken,
       tokenType: tokenType,
+      user: user,
     );
   }
 
@@ -41,6 +44,7 @@ const $RegisterResponseModel = _$RegisterResponseModelTearOff();
 mixin _$RegisterResponseModel {
   String get accessToken => throw _privateConstructorUsedError;
   String get tokenType => throw _privateConstructorUsedError;
+  AuthenticationUserModel get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +57,10 @@ abstract class $RegisterResponseModelCopyWith<$Res> {
   factory $RegisterResponseModelCopyWith(RegisterResponseModel value,
           $Res Function(RegisterResponseModel) then) =
       _$RegisterResponseModelCopyWithImpl<$Res>;
-  $Res call({String accessToken, String tokenType});
+  $Res call(
+      {String accessToken, String tokenType, AuthenticationUserModel user});
+
+  $AuthenticationUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -69,6 +76,7 @@ class _$RegisterResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? tokenType = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       accessToken: accessToken == freezed
@@ -79,7 +87,18 @@ class _$RegisterResponseModelCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AuthenticationUserModel,
     ));
+  }
+
+  @override
+  $AuthenticationUserModelCopyWith<$Res> get user {
+    return $AuthenticationUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -90,7 +109,11 @@ abstract class _$RegisterResponseModelCopyWith<$Res>
           $Res Function(_RegisterResponseModel) then) =
       __$RegisterResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({String accessToken, String tokenType});
+  $Res call(
+      {String accessToken, String tokenType, AuthenticationUserModel user});
+
+  @override
+  $AuthenticationUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -108,6 +131,7 @@ class __$RegisterResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? tokenType = freezed,
+    Object? user = freezed,
   }) {
     return _then(_RegisterResponseModel(
       accessToken: accessToken == freezed
@@ -118,6 +142,10 @@ class __$RegisterResponseModelCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AuthenticationUserModel,
     ));
   }
 }
@@ -126,7 +154,7 @@ class __$RegisterResponseModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_RegisterResponseModel implements _RegisterResponseModel {
   const _$_RegisterResponseModel(
-      {required this.accessToken, required this.tokenType});
+      {required this.accessToken, required this.tokenType, required this.user});
 
   factory _$_RegisterResponseModel.fromJson(Map<String, dynamic> json) =>
       _$_$_RegisterResponseModelFromJson(json);
@@ -135,10 +163,12 @@ class _$_RegisterResponseModel implements _RegisterResponseModel {
   final String accessToken;
   @override
   final String tokenType;
+  @override
+  final AuthenticationUserModel user;
 
   @override
   String toString() {
-    return 'RegisterResponseModel(accessToken: $accessToken, tokenType: $tokenType)';
+    return 'RegisterResponseModel(accessToken: $accessToken, tokenType: $tokenType, user: $user)';
   }
 
   @override
@@ -150,14 +180,17 @@ class _$_RegisterResponseModel implements _RegisterResponseModel {
                     .equals(other.accessToken, accessToken)) &&
             (identical(other.tokenType, tokenType) ||
                 const DeepCollectionEquality()
-                    .equals(other.tokenType, tokenType)));
+                    .equals(other.tokenType, tokenType)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(accessToken) ^
-      const DeepCollectionEquality().hash(tokenType);
+      const DeepCollectionEquality().hash(tokenType) ^
+      const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +207,8 @@ class _$_RegisterResponseModel implements _RegisterResponseModel {
 abstract class _RegisterResponseModel implements RegisterResponseModel {
   const factory _RegisterResponseModel(
       {required String accessToken,
-      required String tokenType}) = _$_RegisterResponseModel;
+      required String tokenType,
+      required AuthenticationUserModel user}) = _$_RegisterResponseModel;
 
   factory _RegisterResponseModel.fromJson(Map<String, dynamic> json) =
       _$_RegisterResponseModel.fromJson;
@@ -183,6 +217,8 @@ abstract class _RegisterResponseModel implements RegisterResponseModel {
   String get accessToken => throw _privateConstructorUsedError;
   @override
   String get tokenType => throw _privateConstructorUsedError;
+  @override
+  AuthenticationUserModel get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$RegisterResponseModelCopyWith<_RegisterResponseModel> get copyWith =>
