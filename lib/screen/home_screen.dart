@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_app_public/config/routes/routes.gr.dart';
 import 'package:frontend_app_public/features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'package:frontend_app_public/features/report/presentation/report_bloc/report_bloc.dart';
 import 'package:frontend_app_public/features/report/presentation/widgets/reports_widget.dart';
 import 'package:frontend_app_public/model/report_model.dart';
 

@@ -1,5 +1,4 @@
 import 'package:frontend_app_public/core/constants.dart';
-import 'package:frontend_app_public/features/user/data/models/user_authenticated_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/authentication_credential_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_response_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_response_model.dart';

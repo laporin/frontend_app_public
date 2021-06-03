@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:frontend_app_public/core/usecases/usecase.dart';
-import 'package:frontend_app_public/features/user/data/models/user_authenticated_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/login_request_model.dart';
 import 'package:frontend_app_public/features/authentication/data/models/register_request_model.dart';
 import 'package:frontend_app_public/features/authentication/domain/usecases/check_authentication_usecase.dart';

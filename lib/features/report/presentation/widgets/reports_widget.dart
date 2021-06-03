@@ -18,7 +18,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<ReportBloc>(context)..add(GetReportsEvent());
+    BlocProvider.of<ReportBloc>(context)..add(GetReportsEvent()); // tidak terpanggil
     setState(() {});
   }
 
