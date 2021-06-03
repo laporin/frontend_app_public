@@ -66,8 +66,8 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           ALIAS: ${{ secrets.ALIAS }}
-          KEY_PATH: release.keystore.jks
-          STORE_FILE: release.keystore.jks
+          KEY_PATH: android/release.keystore.jks
+          STORE_FILE: android/release.keystore.jks
 
       - name: Release Apps
         uses: ncipollo/release-action@v1
