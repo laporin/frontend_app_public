@@ -124,19 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Icon(Icons.add),
             );
           } else {
-            return FloatingActionButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Mohon masuk atau daftar dahulu untuk membuat laporan.',
-                    ),
-                  ),
-                );
-                print('apa ya');
-              },
-              child: Icon(Icons.account_balance),
-            );
+            return Container();
           }
         },
       ),
