@@ -65,7 +65,7 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
       body.images.forEach((element) {
         images.add(MultipartFile.fromFileSync(element));
       });
-      apa['images'] = images;
+      apa['images[]'] = images;
     }
 
     var reportData = FormData.fromMap(apa);
@@ -73,6 +73,9 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
     final response = await dio.post(
       "${Env.backendUrl}/api/reports",
       data: reportData,
+      onSendProgress: (int sent, int total) {
+        print('>>>> sent: $sent | total: $total');
+      },
     );
     if (response.statusCode == 201) {
       return CreateReportResponseModel.fromJson(response.data);
