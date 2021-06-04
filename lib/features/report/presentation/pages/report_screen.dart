@@ -58,7 +58,8 @@ class _ReportScreenState extends State<ReportScreen> {
                         return Text(state.message);
                       },
                       loaded: (state) {
-                        if (report != null && report?.user.id == state.user.id) {
+                        if (report != null &&
+                            report?.user.id == state.user.id) {
                           return Row(
                             children: [
                               IconButton(
@@ -157,23 +158,33 @@ class _ReportScreenState extends State<ReportScreen> {
                         items: report.images.map((image) {
                           return Builder(
                             builder: (BuildContext context) {
-                              return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: DecorationImage(
-                                    image: NetworkImage(image.url),
-                                    fit: BoxFit.cover,
+                              return InteractiveViewer(
+                                child: InkWell(
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 5.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(8),
+                                      image: DecorationImage(
+                                        image: NetworkImage(image.url),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    // child: Center(
+                                    //   child: Text(
+                                    //     'text ${image.url}',
+                                    //     style: TextStyle(fontSize: 16),
+                                    //   ),
+                                    // ),
                                   ),
+                                  onTap: () {
+                                    AutoRouter.of(context).navigate(
+                                      FullImageScreenRoute(url: image.url),
+                                    );
+                                  },
                                 ),
-                                // child: Center(
-                                //   child: Text(
-                                //     'text ${image.url}',
-                                //     style: TextStyle(fontSize: 16),
-                                //   ),
-                                // ),
                               );
                             },
                           );

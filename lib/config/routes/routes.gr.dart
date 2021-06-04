@@ -11,6 +11,7 @@ import '../../features/authentication/presentation/screens/login_screen.dart'
     as _i7;
 import '../../features/authentication/presentation/screens/register_screen.dart'
     as _i8;
+import '../../features/report/presentation/pages/full_image_screen.dart' as _i9;
 import '../../features/report/presentation/pages/new_report_screen.dart' as _i5;
 import '../../features/report/presentation/pages/report_screen.dart' as _i6;
 import '../../screen/home_screen.dart' as _i3;
@@ -52,6 +53,12 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return _i8.RegisterScreen();
+        }),
+    FullImageScreenRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<FullImageScreenRouteArgs>();
+          return _i9.FullImageScreen(key: args.key, url: args.url);
         })
   };
 
@@ -62,7 +69,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(NewReportScreenRoute.name, path: '/new-report-screen'),
         _i1.RouteConfig(ReportScreenRoute.name, path: '/report-screen'),
         _i1.RouteConfig(LoginScreenRoute.name, path: '/login-screen'),
-        _i1.RouteConfig(RegisterScreenRoute.name, path: '/register-screen')
+        _i1.RouteConfig(RegisterScreenRoute.name, path: '/register-screen'),
+        _i1.RouteConfig(FullImageScreenRoute.name, path: '/full-image-screen')
       ];
 }
 
@@ -111,4 +119,21 @@ class RegisterScreenRoute extends _i1.PageRouteInfo {
   const RegisterScreenRoute() : super(name, path: '/register-screen');
 
   static const String name = 'RegisterScreenRoute';
+}
+
+class FullImageScreenRoute extends _i1.PageRouteInfo<FullImageScreenRouteArgs> {
+  FullImageScreenRoute({_i2.Key? key, required String url})
+      : super(name,
+            path: '/full-image-screen',
+            args: FullImageScreenRouteArgs(key: key, url: url));
+
+  static const String name = 'FullImageScreenRoute';
+}
+
+class FullImageScreenRouteArgs {
+  const FullImageScreenRouteArgs({this.key, required this.url});
+
+  final _i2.Key? key;
+
+  final String url;
 }
