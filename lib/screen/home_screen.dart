@@ -40,6 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: Text('Masuk / Daftar'),
                   );
+                } else if (state is AuthenticationLoadingState) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 } else if (state is AuthenticatedState) {
                   return InkWell(
                     onTap: () {
