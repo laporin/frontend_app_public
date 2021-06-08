@@ -398,7 +398,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                     ),
                     SizedBox(height: 15),
                     Text(
-                      'Kota',
+                      'Kecamatan',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
