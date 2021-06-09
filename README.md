@@ -19,8 +19,7 @@
 
 ## What is the unique points?
 
-* Implementing domain driven design architecture.
-* Clean code.
+* Implementing clean code architecture.
 * Build automatically every push to the branch master and then create downloadable APK artifact (ongoing).
 
 ## Architecture
@@ -31,11 +30,11 @@
 
 Source: [Uncle Bob's Clean Architecture Proposal](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
-### Domain Driven Design Architecture
+### Reso Coder's Flutter Clean Architecture Proposal
 
-![image](https://user-images.githubusercontent.com/32485694/121276613-2817ea80-c8f9-11eb-93e7-3306ff96dd36.png)
+![image](https://user-images.githubusercontent.com/32485694/121295393-29f1a600-c919-11eb-8dee-e8303001b834.png)
 
-Source: [Domain Driven Design Principles by Reso Coder](https://resocoder.com/2020/03/09/flutter-firebase-ddd-course-1-domain-driven-design-principles/)
+Source: [Flutter TDD Clean Architecture Course [1] – Explanation & Project Structure by Reso Coder](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
 
 ## Dependencies
 
